@@ -1,8 +1,12 @@
 name = Admin Interface for Product DC
 core = 7.x
 package = Features
+dependencies[] = features
+dependencies[] = shortcut
 dependencies[] = views
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
+features[user_permission][] = switch shortcut sets
+features[user_role][] = admin
 features[views_view][] = admin_product_add
 features_exclude[dependencies][ctools] = ctools
