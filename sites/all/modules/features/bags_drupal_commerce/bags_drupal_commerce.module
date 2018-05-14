@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Bags Drupal Commerce feature.
+ */
+
+include_once 'bags_drupal_commerce.features.inc';
