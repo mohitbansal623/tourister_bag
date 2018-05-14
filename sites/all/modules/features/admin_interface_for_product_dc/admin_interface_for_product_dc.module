@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Admin Interface for Product DC feature.
+ */
+
+include_once 'admin_interface_for_product_dc.features.inc';
