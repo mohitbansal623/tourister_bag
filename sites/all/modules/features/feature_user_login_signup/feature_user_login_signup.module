@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the feature_user_login_signup feature.
  */
+
+include_once 'feature_user_login_signup.features.inc';

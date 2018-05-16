@@ -19,10 +19,10 @@ function feature_user_login_signup_field_default_field_bases() {
     'field_name' => 'field_aadhar_no',
     'indexes' => array(),
     'locked' => 0,
-    'module' => 'number',
+    'module' => 'bigint',
     'settings' => array(),
     'translatable' => 0,
-    'type' => 'number_integer',
+    'type' => 'number_bigint',
   );
 
   // Exported field_base: 'field_address'.
@@ -118,10 +118,10 @@ function feature_user_login_signup_field_default_field_bases() {
     'field_name' => 'field_contact_number',
     'indexes' => array(),
     'locked' => 0,
-    'module' => 'number',
+    'module' => 'bigint',
     'settings' => array(),
     'translatable' => 0,
-    'type' => 'number_integer',
+    'type' => 'number_bigint',
   );
 
   // Exported field_base: 'field_gstin_no'.
@@ -154,10 +154,10 @@ function feature_user_login_signup_field_default_field_bases() {
     'field_name' => 'field_office_contact_no_',
     'indexes' => array(),
     'locked' => 0,
-    'module' => 'number',
+    'module' => 'bigint',
     'settings' => array(),
     'translatable' => 0,
-    'type' => 'number_integer',
+    'type' => 'number_bigint',
   );
 
   // Exported field_base: 'field_owner_s_contact_no_'.
@@ -169,10 +169,10 @@ function feature_user_login_signup_field_default_field_bases() {
     'field_name' => 'field_owner_s_contact_no_',
     'indexes' => array(),
     'locked' => 0,
-    'module' => 'number',
+    'module' => 'bigint',
     'settings' => array(),
     'translatable' => 0,
-    'type' => 'number_integer',
+    'type' => 'number_bigint',
   );
 
   // Exported field_base: 'field_owner_s_name'.
@@ -220,10 +220,10 @@ function feature_user_login_signup_field_default_field_bases() {
     'field_name' => 'field_purchase_dept_contact_no_',
     'indexes' => array(),
     'locked' => 0,
-    'module' => 'number',
+    'module' => 'bigint',
     'settings' => array(),
     'translatable' => 0,
-    'type' => 'number_integer',
+    'type' => 'number_bigint',
   );
 
   // Exported field_base: 'field_purchase_dept_name'.
@@ -281,10 +281,10 @@ function feature_user_login_signup_field_default_field_bases() {
     'field_name' => 'field_stores_dept_contact_no_',
     'indexes' => array(),
     'locked' => 0,
-    'module' => 'number',
+    'module' => 'bigint',
     'settings' => array(),
     'translatable' => 0,
-    'type' => 'number_integer',
+    'type' => 'number_bigint',
   );
 
   // Exported field_base: 'field_stores_dept_name'.
@@ -334,19 +334,19 @@ function feature_user_login_signup_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_transporter_contact_no'.
-  $field_bases['field_transporter_contact_no'] = array(
+  // Exported field_base: 'field_transporter_contact_no_'.
+  $field_bases['field_transporter_contact_no_'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_transporter_contact_no',
+    'field_name' => 'field_transporter_contact_no_',
     'indexes' => array(),
     'locked' => 0,
-    'module' => 'number',
+    'module' => 'bigint',
     'settings' => array(),
     'translatable' => 0,
-    'type' => 'number_integer',
+    'type' => 'number_bigint',
   );
 
   // Exported field_base: 'field_user_name'.

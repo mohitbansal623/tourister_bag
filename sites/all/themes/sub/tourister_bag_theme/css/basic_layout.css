@@ -74,7 +74,7 @@ body.html, html {
 
 /* line 76, ../sass/basic_layout.scss */
 .page-container {
-  height: 995px;
+  min-height: calc(100vh-350px);
 }
 
 /* line 81, ../sass/basic_layout.scss */
