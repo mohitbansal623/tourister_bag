@@ -19,15 +19,15 @@ function feature_user_login_signup_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
+        'module' => 'bigint',
         'settings' => array(
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => '',
+          'thousand_separator' => ',',
         ),
-        'type' => 'number_integer',
-        'weight' => 11,
+        'type' => 'number_bigint',
+        'weight' => 22,
       ),
     ),
     'entity_type' => 'user',
@@ -38,15 +38,16 @@ function feature_user_login_signup_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
+      'size' => 60,
       'suffix' => '',
       'user_register_form' => 1,
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'number',
+      'module' => 'bigint',
       'settings' => array(),
-      'type' => 'number',
-      'weight' => 14,
+      'type' => 'number_bigint',
+      'weight' => 6,
     ),
   );
 
@@ -80,7 +81,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -184,7 +185,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -197,15 +198,15 @@ function feature_user_login_signup_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
+        'module' => 'bigint',
         'settings' => array(
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => '',
+          'thousand_separator' => ',',
         ),
-        'type' => 'number_integer',
-        'weight' => 1,
+        'type' => 'number_bigint',
+        'weight' => 18,
       ),
     ),
     'entity_type' => 'user',
@@ -216,15 +217,16 @@ function feature_user_login_signup_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
+      'size' => 60,
       'suffix' => '',
       'user_register_form' => 1,
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'number',
+      'module' => 'bigint',
       'settings' => array(),
-      'type' => 'number',
-      'weight' => 3,
+      'type' => 'number_bigint',
+      'weight' => 4,
     ),
   );
 
@@ -271,15 +273,15 @@ function feature_user_login_signup_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
+        'module' => 'bigint',
         'settings' => array(
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => '',
+          'thousand_separator' => ',',
         ),
-        'type' => 'number_integer',
-        'weight' => 17,
+        'type' => 'number_bigint',
+        'weight' => 24,
       ),
     ),
     'entity_type' => 'user',
@@ -290,15 +292,16 @@ function feature_user_login_signup_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
+      'size' => 60,
       'suffix' => '',
       'user_register_form' => 1,
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'number',
+      'module' => 'bigint',
       'settings' => array(),
-      'type' => 'number',
-      'weight' => 19,
+      'type' => 'number_bigint',
+      'weight' => 21,
     ),
   );
 
@@ -311,15 +314,15 @@ function feature_user_login_signup_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
+        'module' => 'bigint',
         'settings' => array(
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => '',
+          'thousand_separator' => ',',
         ),
-        'type' => 'number_integer',
-        'weight' => 6,
+        'type' => 'number_bigint',
+        'weight' => 19,
       ),
     ),
     'entity_type' => 'user',
@@ -330,15 +333,16 @@ function feature_user_login_signup_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
+      'size' => 60,
       'suffix' => '',
       'user_register_form' => 1,
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'number',
+      'module' => 'bigint',
       'settings' => array(),
-      'type' => 'number',
-      'weight' => 9,
+      'type' => 'number_bigint',
+      'weight' => 10,
     ),
   );
 
@@ -372,7 +376,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -425,15 +429,15 @@ function feature_user_login_signup_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
+        'module' => 'bigint',
         'settings' => array(
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => '',
+          'thousand_separator' => ',',
         ),
-        'type' => 'number_integer',
-        'weight' => 8,
+        'type' => 'number_bigint',
+        'weight' => 20,
       ),
     ),
     'entity_type' => 'user',
@@ -444,15 +448,16 @@ function feature_user_login_signup_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
+      'size' => 60,
       'suffix' => '',
       'user_register_form' => 1,
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'number',
+      'module' => 'bigint',
       'settings' => array(),
-      'type' => 'number',
-      'weight' => 11,
+      'type' => 'number_bigint',
+      'weight' => 12,
     ),
   );
 
@@ -486,7 +491,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -517,7 +522,7 @@ function feature_user_login_signup_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -530,15 +535,15 @@ function feature_user_login_signup_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
+        'module' => 'bigint',
         'settings' => array(
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => '',
+          'thousand_separator' => ',',
         ),
-        'type' => 'number_integer',
-        'weight' => 10,
+        'type' => 'number_bigint',
+        'weight' => 21,
       ),
     ),
     'entity_type' => 'user',
@@ -549,15 +554,16 @@ function feature_user_login_signup_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
+      'size' => 60,
       'suffix' => '',
       'user_register_form' => 1,
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'number',
+      'module' => 'bigint',
       'settings' => array(),
-      'type' => 'number',
-      'weight' => 13,
+      'type' => 'number_bigint',
+      'weight' => 14,
     ),
   );
 
@@ -591,12 +597,12 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
-  // Exported field_instance: 'user-user-field_transporter_contact_no'.
-  $field_instances['user-user-field_transporter_contact_no'] = array(
+  // Exported field_instance: 'user-user-field_transporter_contact_no_'.
+  $field_instances['user-user-field_transporter_contact_no_'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
@@ -604,34 +610,35 @@ function feature_user_login_signup_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
+        'module' => 'bigint',
         'settings' => array(
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => '',
+          'thousand_separator' => ',',
         ),
-        'type' => 'number_integer',
-        'weight' => 15,
+        'type' => 'number_bigint',
+        'weight' => 23,
       ),
     ),
     'entity_type' => 'user',
-    'field_name' => 'field_transporter_contact_no',
-    'label' => 'Transporter Contact No',
+    'field_name' => 'field_transporter_contact_no_',
+    'label' => 'Transporter Contact No.',
     'required' => 0,
     'settings' => array(
       'max' => '',
       'min' => '',
       'prefix' => '',
+      'size' => 60,
       'suffix' => '',
       'user_register_form' => 1,
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'number',
+      'module' => 'bigint',
       'settings' => array(),
-      'type' => 'number',
-      'weight' => 18,
+      'type' => 'number_bigint',
+      'weight' => 20,
     ),
   );
 
@@ -688,7 +695,7 @@ function feature_user_login_signup_field_default_field_instances() {
   t('Select Category');
   t('Stores Dept. Contact No.');
   t('Stores Dept. Name');
-  t('Transporter Contact No');
+  t('Transporter Contact No.');
 
   return $field_instances;
 }

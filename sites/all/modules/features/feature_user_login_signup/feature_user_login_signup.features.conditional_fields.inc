@@ -335,6 +335,13 @@ function feature_user_login_signup_conditional_fields_default_fields() {
           3 => 0,
           4 => 0,
         ),
+        4 => array(
+          1 => 1,
+          2 => 2,
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
       ),
       'element_edit' => array(
         1 => 1,
@@ -351,6 +358,10 @@ function feature_user_login_signup_conditional_fields_default_fields() {
           3 => 0,
         ),
         3 => array(
+          1 => 1,
+          3 => 0,
+        ),
+        4 => array(
           1 => 1,
           3 => 0,
         ),
@@ -406,6 +417,13 @@ function feature_user_login_signup_conditional_fields_default_fields() {
           3 => 0,
           4 => 0,
         ),
+        4 => array(
+          1 => 1,
+          2 => 2,
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
       ),
       'element_edit' => array(
         1 => 1,
@@ -422,6 +440,10 @@ function feature_user_login_signup_conditional_fields_default_fields() {
           3 => 0,
         ),
         3 => array(
+          1 => 1,
+          3 => 0,
+        ),
+        4 => array(
           1 => 1,
           3 => 0,
         ),
@@ -548,6 +570,13 @@ function feature_user_login_signup_conditional_fields_default_fields() {
           3 => 0,
           4 => 0,
         ),
+        4 => array(
+          1 => 1,
+          2 => 2,
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
       ),
       'element_edit' => array(
         1 => 1,
@@ -564,6 +593,10 @@ function feature_user_login_signup_conditional_fields_default_fields() {
           3 => 0,
         ),
         3 => array(
+          1 => 1,
+          3 => 0,
+        ),
+        4 => array(
           1 => 1,
           3 => 0,
         ),
@@ -690,6 +723,13 @@ function feature_user_login_signup_conditional_fields_default_fields() {
           3 => 0,
           4 => 0,
         ),
+        4 => array(
+          1 => 1,
+          2 => 2,
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
       ),
       'element_edit' => array(
         1 => 1,
@@ -706,6 +746,10 @@ function feature_user_login_signup_conditional_fields_default_fields() {
           3 => 0,
         ),
         3 => array(
+          1 => 1,
+          3 => 0,
+        ),
+        4 => array(
           1 => 1,
           3 => 0,
         ),
@@ -794,7 +838,7 @@ function feature_user_login_signup_conditional_fields_default_fields() {
   $items["user:user:11"] = array(
     'entity' => 'user',
     'bundle' => 'user',
-    'dependent' => 'field_transporter_contact_no',
+    'dependent' => 'field_transporter_contact_no_',
     'dependee' => 'field_select_category',
     'options' => array(
       'state' => 'visible',
@@ -832,6 +876,13 @@ function feature_user_login_signup_conditional_fields_default_fields() {
           3 => 0,
           4 => 0,
         ),
+        4 => array(
+          1 => 1,
+          2 => 2,
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
       ),
       'element_edit' => array(
         1 => 1,
@@ -848,6 +899,10 @@ function feature_user_login_signup_conditional_fields_default_fields() {
           3 => 0,
         ),
         3 => array(
+          1 => 1,
+          3 => 0,
+        ),
+        4 => array(
           1 => 1,
           3 => 0,
         ),
