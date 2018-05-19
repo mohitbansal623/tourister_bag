@@ -32,6 +32,21 @@ function bags_drupal_commerce_image_default_styles() {
     ),
   );
 
+  // Exported image style: image_size_330x300.
+  $styles['image_size_330x300'] = array(
+    'label' => 'Image Size 330x300',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 330,
+          'height' => 300,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
 

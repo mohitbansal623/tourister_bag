@@ -36,7 +36,7 @@ function commerce_product_type_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'commerce_price',
         'settings' => array(
           'calculation' => 'calculated_sell_price',
@@ -114,7 +114,7 @@ function commerce_product_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
+        'type' => 'taxonomy_term_reference_plain',
         'weight' => 2,
       ),
       'line_item' => array(
@@ -153,7 +153,7 @@ function commerce_product_type_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
