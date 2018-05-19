@@ -1,0 +1,27 @@
+@import "fonts";
+
+
+header#navbar.navbar.container {
+  font: 14px sans-serif;
+  background: #292c2f;
+  margin: 0;
+  max-width: 100%;
+  border-radius: 0;
+  .navbar-header {
+
+  }
+  .navbar-collapse {
+    ul.navbar-nav {
+      float: right;
+      a {
+        color: #fff;
+        &.active {
+          color: #f38c58;
+        }
+        &:hover {
+          color: #f38c58;
+        }
+      }
+    }
+  }
+}
