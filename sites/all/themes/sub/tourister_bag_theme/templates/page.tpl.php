@@ -87,13 +87,13 @@ global $user;
     <?php //endif; ?>
     <div class="navbar-header">
       <?php if ($logo): ?>
-        <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+        <!-- <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"> -->
+          <!-- <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /> -->
         </a>
       <?php endif; ?>
 
       <?php if (!empty($site_name)): ?>
-        <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
+        <h3><a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php //print $site_name; ?>Jn<span>bag</span></a></h3>
       <?php endif; ?>
 
       <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>

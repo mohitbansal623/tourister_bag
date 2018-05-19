@@ -8,6 +8,30 @@ header#navbar.navbar.container {
   max-width: 100%;
   border-radius: 0;
   .navbar-header {
+    @media screen and (max-width: 767px) {
+      margin: 10px 0px;
+    }
+
+    h3 {
+      margin: 0;
+      color: #ffffff;
+      font: normal 36px 'Cookie', cursive;
+
+      a {
+        font-size: 32px;
+        color: white;
+        text-transform: lowercase;
+        font-weight: normal;
+
+        @media screen and (max-width: 767px) {
+          font-size: 40px;
+        }
+
+        span {
+          color: #f38c58;
+        }
+      }
+    }
 
   }
   .navbar-collapse {
