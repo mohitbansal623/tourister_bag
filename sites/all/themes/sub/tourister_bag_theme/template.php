@@ -18,4 +18,7 @@ function tourister_bag_theme_preprocess_page(&$variables) {
   drupal_add_js($slick_lib .'/slick/slick.min.js');
   drupal_add_css($slick_lib .'/slick/slick.css');
   drupal_add_css($slick_lib .'/slick/slick-theme.css');
+
+  // kpr($variables);
+  drupal_add_css($theme_path . '/css/display_products.css');
 }
