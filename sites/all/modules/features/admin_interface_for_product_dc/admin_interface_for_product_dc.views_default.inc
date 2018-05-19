@@ -115,9 +115,10 @@ function admin_interface_for_product_dc_views_default_views() {
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['content'] = '<div class="add-content-pages">
-<h2><a href="/admin/commerce/products/add/bags">Add Product Information</a></h2>
-<h2><a href="/node/add/bags">Add Product for Listing</a></h2>
+<h3><a href="/admin/commerce/products/add/bags">Add Product Information</a></h3>
+<h3><a href="/node/add/bags">Add Product for Listing</a></h3>
 </div>';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* Field: Commerce Product: SKU */
@@ -135,7 +136,7 @@ function admin_interface_for_product_dc_views_default_views() {
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'large',
+    'image_style' => 'medium',
     'image_link' => '',
   );
   /* Field: Commerce Product: Color */
@@ -167,6 +168,11 @@ function admin_interface_for_product_dc_views_default_views() {
   $handler->display->display_options['fields']['delete_product']['table'] = 'commerce_product';
   $handler->display->display_options['fields']['delete_product']['field'] = 'delete_product';
   $handler->display->display_options['fields']['delete_product']['text'] = 'Delete';
+  /* Sort criterion: Commerce Product: Created date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'commerce_product';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   /* Filter criterion: Commerce Product: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'commerce_product';
