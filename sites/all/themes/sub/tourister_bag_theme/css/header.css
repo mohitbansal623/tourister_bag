@@ -58,7 +58,7 @@ header#navbar.navbar.container .navbar-header h3 {
 header#navbar.navbar.container .navbar-header h3 a {
   font-size: 32px;
   color: white;
-  text-transform: lowercase;
+  text-transform: capitalize;
   font-weight: normal;
 }
 @media screen and (max-width: 767px) {
