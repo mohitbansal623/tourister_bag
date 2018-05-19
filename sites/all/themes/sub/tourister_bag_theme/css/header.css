@@ -42,10 +42,6 @@ header#navbar.navbar.container {
   max-width: 100%;
   border-radius: 0;
 }
-/* line 14, ../sass/header.scss */
-header#navbar.navbar.container .navbar-collapse ul.navbar-nav {
-  float: right;
-}
 /* line 16, ../sass/header.scss */
 header#navbar.navbar.container .navbar-collapse ul.navbar-nav a {
   color: #fff;
