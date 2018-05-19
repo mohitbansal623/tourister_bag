@@ -78,15 +78,30 @@
   padding-left: 50px;
 }
 
-/* line 76, ../sass/display_products.scss */
-.page-bags .view-bags.view-id-bags .view-content td {
-  padding: 20px;
-}
-/* line 80, ../sass/display_products.scss */
-.page-bags .view-bags.view-id-bags .view-content .views-field-field-image {
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.07);
+/* line 75, ../sass/display_products.scss */
+body.page-bags .main-container h1.page-header {
+  border-bottom: none;
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 /* line 84, ../sass/display_products.scss */
-.page-bags .view-bags.view-id-bags .view-content .views-field-title {
+body.page-bags .view-bags.view-id-bags .view-content .views-field-field-image {
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.07);
+}
+/* line 86, ../sass/display_products.scss */
+body.page-bags .view-bags.view-id-bags .view-content .views-field-field-image a {
+  padding: 10px;
+}
+/* line 90, ../sass/display_products.scss */
+body.page-bags .view-bags.view-id-bags .view-content .views-field-title {
   margin-top: 10px;
+}
+/* line 93, ../sass/display_products.scss */
+body.page-bags .view-bags.view-id-bags .view-content .views-field {
+  text-align: center;
+}
+/* line 95, ../sass/display_products.scss */
+body.page-bags .view-bags.view-id-bags .view-content .views-field:last-child {
+  margin-bottom: 5px;
 }

@@ -33,9 +33,13 @@ function bags_drupal_commerce_views_default_views() {
   $handler->display->display_options['pager']['options']['manual_load'] = 1;
   $handler->display->display_options['pager']['options']['items_per_page'] = '9';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['row_class'] = 'bags-catalog';
-  $handler->display->display_options['style_options']['columns'] = '3';
+  $handler->display->display_options['style_plugin'] = 'views_bootstrap_thumbnail_plugin_style';
+  $handler->display->display_options['style_options']['columns_horizontal'] = '-1';
+  $handler->display->display_options['style_options']['columns_vertical'] = '4';
+  $handler->display->display_options['style_options']['columns_xs'] = '12';
+  $handler->display->display_options['style_options']['columns_sm'] = '6';
+  $handler->display->display_options['style_options']['columns_md'] = '6';
+  $handler->display->display_options['style_options']['columns_lg'] = '4';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Relationship: Content: Referenced products */
   $handler->display->display_options['relationships']['field_bags_reference_product_id']['id'] = 'field_bags_reference_product_id';
