@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the feature_boss_agent_money_transfer feature.
+ */
+
+include_once 'feature_boss_agent_money_transfer.features.inc';
