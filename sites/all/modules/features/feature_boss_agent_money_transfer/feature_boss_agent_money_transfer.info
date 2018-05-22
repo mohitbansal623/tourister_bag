@@ -22,4 +22,5 @@ features[field_instance][] = node-record_money_transfer-field_amout_given_on_dat
 features[field_instance][] = node-record_money_transfer-field_purpose
 features[node][] = record_money_transfer
 features[user_role][] = Agent
+features[views_view][] = filters_users_by_agent_role
 features[views_view][] = transactions_bosses_to_agent
