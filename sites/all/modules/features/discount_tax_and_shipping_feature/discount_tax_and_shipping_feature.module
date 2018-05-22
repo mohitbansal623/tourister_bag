@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Discount,Tax and Shipping Feature feature.
+ */
+
+include_once 'discount_tax_and_shipping_feature.features.inc';
