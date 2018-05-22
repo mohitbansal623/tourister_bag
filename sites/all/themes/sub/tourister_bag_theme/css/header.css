@@ -71,15 +71,21 @@ header#navbar.navbar.container .navbar-header h3 a {
 header#navbar.navbar.container .navbar-header h3 a span {
   color: #f38c58;
 }
-/* line 40, ../sass/header.scss */
+@media screen and (min-width: 768px) {
+  /* line 38, ../sass/header.scss */
+  header#navbar.navbar.container .navbar-collapse nav {
+    float: right;
+  }
+}
+/* line 44, ../sass/header.scss */
 header#navbar.navbar.container .navbar-collapse ul.navbar-nav a {
   color: #fff;
 }
-/* line 42, ../sass/header.scss */
+/* line 46, ../sass/header.scss */
 header#navbar.navbar.container .navbar-collapse ul.navbar-nav a.active {
   color: #f38c58;
 }
-/* line 45, ../sass/header.scss */
+/* line 49, ../sass/header.scss */
 header#navbar.navbar.container .navbar-collapse ul.navbar-nav a:hover {
   color: #f38c58;
 }
