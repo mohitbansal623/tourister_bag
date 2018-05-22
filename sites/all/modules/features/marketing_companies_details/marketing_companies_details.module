@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Marketing Companies Details feature.
+ */
+
+include_once 'marketing_companies_details.features.inc';
