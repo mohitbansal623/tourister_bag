@@ -136,6 +136,9 @@
     .footer-center {
       div:last-child{
         margin-left: 14px;
+        p{
+          margin-left: 4px !important;
+        }
       }
       div:nth-child(2){
         margin-left: -36px;

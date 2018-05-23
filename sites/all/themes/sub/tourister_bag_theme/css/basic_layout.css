@@ -195,15 +195,14 @@ body.front .page-container .main-container.container #block-system-main {
 body.front .page-container .main-container.container #block-views-view-banner-block-1 .view-id-view_banner {
   height: calc(100vh - 305px);
   position: relative;
-  overflow: hidden;
 }
-/* line 150, ../sass/basic_layout.scss */
+/* line 149, ../sass/basic_layout.scss */
 body.front .page-container .main-container.container #block-views-view-banner-block-1 .views-content.slick-initialized {
   height: 100%;
 }
 @media screen and (max-width: 650px) {
-  /* line 154, ../sass/basic_layout.scss */
+  /* line 153, ../sass/basic_layout.scss */
   body.front .page-container .main-container.container #block-views-view-banner-block-1 .slick-slide img {
-    height: 180px;
+    height: 250px;
   }
 }

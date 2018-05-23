@@ -145,14 +145,13 @@ body.front {
         .view-id-view_banner {
           height: calc(100vh - 305px);
           position: relative;
-          overflow: hidden;
         }
         .views-content.slick-initialized {
           height: 100%;
         }
         @media screen and (max-width: 650px) {
           .slick-slide img {
-            height: 180px;
+            height: 250px;
           }
         }
       }

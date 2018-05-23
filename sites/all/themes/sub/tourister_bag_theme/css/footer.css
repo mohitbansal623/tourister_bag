@@ -181,19 +181,23 @@
   .site-footer .footer-center div:last-child {
     margin-left: 14px;
   }
-  /* line 140, ../sass/footer.scss */
+  /* line 139, ../sass/footer.scss */
+  .site-footer .footer-center div:last-child p {
+    margin-left: 4px !important;
+  }
+  /* line 143, ../sass/footer.scss */
   .site-footer .footer-center div:nth-child(2) {
     margin-left: -36px;
   }
-  /* line 142, ../sass/footer.scss */
+  /* line 145, ../sass/footer.scss */
   .site-footer .footer-center div:nth-child(2) p {
     margin-left: 4px !important;
   }
-  /* line 146, ../sass/footer.scss */
+  /* line 149, ../sass/footer.scss */
   .site-footer .footer-center i {
     margin: 10px 4px !important;
   }
-  /* line 149, ../sass/footer.scss */
+  /* line 152, ../sass/footer.scss */
   .site-footer .footer-center p {
     font-size: 12px;
   }
