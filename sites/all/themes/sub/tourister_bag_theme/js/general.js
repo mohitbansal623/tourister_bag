@@ -11,29 +11,29 @@
       pauseOnHover: true,
       pauseOnFocus: false
     });
-
-
-    $('#block-views-view-banner-block-1 .view-content .views-row').slick({
-      arrows: true,
-      slidesToShow:3,
-      slidesToScroll: 1,
-      dots:false,
-      infinite: false,
-      responsive: [
-        {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 2,
-          }
-        },
-        {
-          breakpoint: 500,
-          settings: {
-            slidesToShow: 1,
-          }
-        }
-      ]
-    });
+    //
+    //
+    // $('#block-views-view-banner-block-1 .view-content .views-row').not('.slick-initialized').slick({
+    //   arrows: true,
+    //   slidesToShow:3,
+    //   slidesToScroll: 1,
+    //   dots:false,
+    //   infinite: false,
+    //   responsive: [
+    //     {
+    //       breakpoint: 992,
+    //       settings: {
+    //         slidesToShow: 2,
+    //       }
+    //     },
+    //     {
+    //       breakpoint: 500,
+    //       settings: {
+    //         slidesToShow: 1,
+    //       }
+    //     }
+    //   ]
+    // });
 
 
   });

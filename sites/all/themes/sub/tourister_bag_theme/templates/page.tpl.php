@@ -124,6 +124,14 @@ global $user;
 </header>
 
 <div class="page-container">
+  <?php if (!empty($page['highlighted'])): ?>
+    <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
+    <!-- <div class="main-container main-container-banner <?php print $container_class; ?>"> -->
+
+  <?php else: ?>
+    <div class="main-container <?php print $container_class; ?>">
+  <?php endif; ?>
+
     <header role="banner" id="page-header">
       <?php if (!empty($site_slogan)): ?>
         <p class="lead"><?php print $site_slogan; ?></p>
@@ -141,9 +149,6 @@ global $user;
       <?php endif; ?>
 
       <section<?php print $content_column_class; ?>>
-      <?php if (!empty($page['highlighted'])): ?>
-        <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
-      <?php endif; ?>
         <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
         <a id="main-content"></a>
         <?php print render($title_prefix); ?>

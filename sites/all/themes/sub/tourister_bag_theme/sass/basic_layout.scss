@@ -10,7 +10,7 @@ body.html, html {
   background: transparent;
   width: 100%;
   max-width: 100%;
-  padding: 0 50px;
+  // padding: 0 50px;
   border: none;
   color: #fff;
 }
@@ -119,6 +119,42 @@ body.html, html {
           text-transform: uppercase;
         }
         .obak { color: #ff9966 }
+      }
+    }
+  }
+}
+
+// FRONT pages
+body.front {
+  .page-container{
+    margin-bottom: 0px;
+    .main-container.container {
+      width: auto;
+      padding: 0px;
+       .slick-track, .slick-list {
+        	height: 100%;
+        }
+      .page-header {
+        display: none;
+      }
+      // Temporary hidden
+      #block-system-main {
+        display: none;
+      }
+      #block-views-view-banner-block-1 {
+        .view-id-view_banner {
+          height: calc(100vh - 305px);
+          position: relative;
+          overflow: hidden;
+        }
+        .views-content.slick-initialized {
+          height: 100%;
+        }
+        @media screen and (max-width: 650px) {
+          .slick-slide img {
+            height: 180px;
+          }
+        }
       }
     }
   }

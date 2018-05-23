@@ -1,0 +1,12 @@
+name = feature_site_layout
+core = 7.x
+package = Features
+dependencies[] = block
+dependencies[] = context
+dependencies[] = ctools
+dependencies[] = system
+dependencies[] = views
+features[context][] = front_page
+features[context][] = site_layout
+features[ctools][] = context:context:3
+features[features_api][] = api:2
