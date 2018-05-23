@@ -45,7 +45,6 @@ body.html, html {
   background: transparent;
   width: 100%;
   max-width: 100%;
-  padding: 0 50px;
   border: none;
   color: #fff;
 }
@@ -169,4 +168,42 @@ body.html, html {
 /* line 121, ../sass/basic_layout.scss */
 .maintenance-page.in-maintenance .main-container .center-content .intro-content .obak {
   color: #ff9966;
+}
+
+/* line 129, ../sass/basic_layout.scss */
+body.front .page-container {
+  margin-bottom: 0px;
+}
+/* line 131, ../sass/basic_layout.scss */
+body.front .page-container .main-container.container {
+  width: auto;
+  padding: 0px;
+}
+/* line 134, ../sass/basic_layout.scss */
+body.front .page-container .main-container.container .slick-track, body.front .page-container .main-container.container .slick-list {
+  height: 100%;
+}
+/* line 137, ../sass/basic_layout.scss */
+body.front .page-container .main-container.container .page-header {
+  display: none;
+}
+/* line 141, ../sass/basic_layout.scss */
+body.front .page-container .main-container.container #block-system-main {
+  display: none;
+}
+/* line 145, ../sass/basic_layout.scss */
+body.front .page-container .main-container.container #block-views-view-banner-block-1 .view-id-view_banner {
+  height: calc(100vh - 305px);
+  position: relative;
+  overflow: hidden;
+}
+/* line 150, ../sass/basic_layout.scss */
+body.front .page-container .main-container.container #block-views-view-banner-block-1 .views-content.slick-initialized {
+  height: 100%;
+}
+@media screen and (max-width: 650px) {
+  /* line 154, ../sass/basic_layout.scss */
+  body.front .page-container .main-container.container #block-views-view-banner-block-1 .slick-slide img {
+    height: 180px;
+  }
 }
