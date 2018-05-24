@@ -143,16 +143,26 @@ body.front {
       }
       #block-views-view-banner-block-1 {
         .view-id-view_banner {
-          height: calc(100vh - 305px);
+          // height: calc(100vh - 305px);
           position: relative;
           overflow: hidden;
         }
         .views-content.slick-initialized {
           height: 100%;
+          margin-bottom: 0px;
         }
         @media screen and (max-width: 650px) {
           .slick-slide img {
             height: 180px;
+          }
+        }
+
+        .slick-dots {
+          background: white;
+          margin: 0px;
+          bottom: 0;
+          li button:before {
+            font-size: 10px;
           }
         }
       }
