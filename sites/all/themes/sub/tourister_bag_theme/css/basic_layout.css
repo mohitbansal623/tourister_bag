@@ -211,7 +211,7 @@ body.front .page-container .main-container.container #block-views-view-banner-bl
 body.front .page-container .main-container.container #block-views-view-banner-block-1 .slick-dots {
   background: white;
   margin: 0px;
-  bottom: 0;
+  bottom: -25px;
 }
 /* line 164, ../sass/basic_layout.scss */
 body.front .page-container .main-container.container #block-views-view-banner-block-1 .slick-dots li button:before {
