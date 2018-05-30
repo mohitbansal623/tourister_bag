@@ -13,3 +13,22 @@ function general_customize_user_login(&$edit, $account) {
     drupal_goto('cart');
   }
 }
+
+
+function general_customize_menu() {
+  $items['verify-user'] = array(
+    'title' => '',
+    'page callback' => 'check_login',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+
+function check_login() {
+  $output = '<h3><a href="/user/login">With Login</a></h3><h3><a href="/cart">Without Login</a></h3>';
+  $_SESSION['cart_page'] = 1;
+
+  return $output;
+}
