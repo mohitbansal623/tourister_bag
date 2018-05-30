@@ -99,3 +99,11 @@ body.page-bags {
     }
   }
 }
+
+.page-cart {
+  .commerce-line-item-actions {
+    #edit-submit {
+      display: none;
+    }
+  }
+}

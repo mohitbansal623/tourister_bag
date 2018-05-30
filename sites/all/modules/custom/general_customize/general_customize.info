@@ -1,0 +1,3 @@
+name = Common Configurations
+description = Used for common configurations of site.
+core = 7.x

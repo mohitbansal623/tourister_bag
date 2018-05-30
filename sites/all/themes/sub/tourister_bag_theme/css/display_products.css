@@ -105,3 +105,8 @@ body.page-bags .view-bags.view-id-bags .view-content .views-field {
 body.page-bags .view-bags.view-id-bags .view-content .views-field:last-child {
   margin-bottom: 5px;
 }
+
+/* line 105, ../sass/display_products.scss */
+.page-cart .commerce-line-item-actions #edit-submit {
+  display: none;
+}

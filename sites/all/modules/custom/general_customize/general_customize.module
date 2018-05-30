@@ -1,0 +1,15 @@
+<?php
+/**
+ * Implements form alter.
+ */
+function general_customize_form_alter(&$form, &$form_state, $form_id) {
+  unset($form['account']['roles']['#options'][3]);
+}
+
+function general_customize_user_login(&$edit, $account) {
+  // dpm($_SESSION);
+  if (isset($_SESSION['cart_page'])) {
+    unset($_SESSION['cart_page']);
+    drupal_goto('cart');
+  }
+}
