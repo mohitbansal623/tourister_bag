@@ -10,46 +10,6 @@
 function feature_boss_agent_money_transfer_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-record_money_transfer-field_agent_name'.
-  $field_instances['node-record_money_transfer-field_agent_name'] = array(
-    'bundle' => 'record_money_transfer',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'bypass_access' => FALSE,
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_agent_name',
-    'label' => 'Agent Name',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => -2,
-    ),
-  );
-
   // Exported field_instance: 'node-record_money_transfer-field_amount'.
   $field_instances['node-record_money_transfer-field_amount'] = array(
     'bundle' => 'record_money_transfer',
@@ -78,7 +38,7 @@ function feature_boss_agent_money_transfer_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_amount',
-    'label' => 'Given Amount',
+    'label' => 'Amount (रुपए)',
     'required' => 1,
     'settings' => array(
       'max' => '',
@@ -120,7 +80,7 @@ function feature_boss_agent_money_transfer_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_amount_given_by',
-    'label' => 'Amount Given By',
+    'label' => 'Amount Given By (देने वाला)',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -216,7 +176,7 @@ function feature_boss_agent_money_transfer_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_purpose',
-    'label' => 'Purpose',
+    'label' => 'Purpose (कारण)',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -235,11 +195,10 @@ function feature_boss_agent_money_transfer_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Agent Name');
-  t('Amount Given By');
-  t('Given Amount');
+  t('Amount (रुपए)');
+  t('Amount Given By (देने वाला)');
   t('Name of the person who has given money to the agent');
-  t('Purpose');
+  t('Purpose (कारण)');
   t('Select Amount Given Date');
   t('Specify on which date money is given to the agent');
 

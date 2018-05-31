@@ -142,6 +142,13 @@ function marketing_companies_details_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No results found.';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -160,7 +167,7 @@ function marketing_companies_details_views_default_views() {
   $handler->display->display_options['fields']['field_email_id']['table'] = 'field_data_field_email_id';
   $handler->display->display_options['fields']['field_email_id']['field'] = 'field_email_id';
   $handler->display->display_options['fields']['field_email_id']['type'] = 'email_plain';
-  /* Field: Content: Contact Number */
+  /* Field: Content: Contact Number (संपर्क सूत्र)  */
   $handler->display->display_options['fields']['field_owner_contact_number']['id'] = 'field_owner_contact_number';
   $handler->display->display_options['fields']['field_owner_contact_number']['table'] = 'field_data_field_owner_contact_number';
   $handler->display->display_options['fields']['field_owner_contact_number']['field'] = 'field_owner_contact_number';
@@ -168,7 +175,7 @@ function marketing_companies_details_views_default_views() {
     'thousand_separator' => ',',
     'prefix_suffix' => 1,
   );
-  /* Field: Content: Alternative Contact Number */
+  /* Field: Content: Alternative Contact Number (दूसरा संपर्क सूत्र) */
   $handler->display->display_options['fields']['field_alternative_contact_number']['id'] = 'field_alternative_contact_number';
   $handler->display->display_options['fields']['field_alternative_contact_number']['table'] = 'field_data_field_alternative_contact_number';
   $handler->display->display_options['fields']['field_alternative_contact_number']['field'] = 'field_alternative_contact_number';
@@ -176,15 +183,15 @@ function marketing_companies_details_views_default_views() {
     'thousand_separator' => ',',
     'prefix_suffix' => 1,
   );
-  /* Field: Content: Company Address */
+  /* Field: Content: Company Address (दुकान का पता) */
   $handler->display->display_options['fields']['field_company_address']['id'] = 'field_company_address';
   $handler->display->display_options['fields']['field_company_address']['table'] = 'field_data_field_company_address';
   $handler->display->display_options['fields']['field_company_address']['field'] = 'field_company_address';
-  /* Field: Content: City */
+  /* Field: Content: City (शहर का नाम) */
   $handler->display->display_options['fields']['field_city']['id'] = 'field_city';
   $handler->display->display_options['fields']['field_city']['table'] = 'field_data_field_city';
   $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
-  /* Field: Content: State */
+  /* Field: Content: State (राज्य) */
   $handler->display->display_options['fields']['field_state']['id'] = 'field_state';
   $handler->display->display_options['fields']['field_state']['table'] = 'field_data_field_state';
   $handler->display->display_options['fields']['field_state']['field'] = 'field_state';
@@ -204,7 +211,7 @@ function marketing_companies_details_views_default_views() {
     'thousand_separator' => ',',
     'prefix_suffix' => 1,
   );
-  /* Field: Content: Company Category */
+  /* Field: Content: Company Category  (दुकान का प्रकार)  */
   $handler->display->display_options['fields']['field_company_category']['id'] = 'field_company_category';
   $handler->display->display_options['fields']['field_company_category']['table'] = 'field_data_field_company_category';
   $handler->display->display_options['fields']['field_company_category']['field'] = 'field_company_category';
@@ -243,6 +250,135 @@ function marketing_companies_details_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Owner Name */
+  $handler->display->display_options['fields']['field_owner_name']['id'] = 'field_owner_name';
+  $handler->display->display_options['fields']['field_owner_name']['table'] = 'field_data_field_owner_name';
+  $handler->display->display_options['fields']['field_owner_name']['field'] = 'field_owner_name';
+  /* Field: Content: Email ID */
+  $handler->display->display_options['fields']['field_email_id']['id'] = 'field_email_id';
+  $handler->display->display_options['fields']['field_email_id']['table'] = 'field_data_field_email_id';
+  $handler->display->display_options['fields']['field_email_id']['field'] = 'field_email_id';
+  $handler->display->display_options['fields']['field_email_id']['type'] = 'email_plain';
+  /* Field: Content: Contact Number (संपर्क सूत्र)  */
+  $handler->display->display_options['fields']['field_owner_contact_number']['id'] = 'field_owner_contact_number';
+  $handler->display->display_options['fields']['field_owner_contact_number']['table'] = 'field_data_field_owner_contact_number';
+  $handler->display->display_options['fields']['field_owner_contact_number']['field'] = 'field_owner_contact_number';
+  $handler->display->display_options['fields']['field_owner_contact_number']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: Alternative Contact Number (दूसरा संपर्क सूत्र) */
+  $handler->display->display_options['fields']['field_alternative_contact_number']['id'] = 'field_alternative_contact_number';
+  $handler->display->display_options['fields']['field_alternative_contact_number']['table'] = 'field_data_field_alternative_contact_number';
+  $handler->display->display_options['fields']['field_alternative_contact_number']['field'] = 'field_alternative_contact_number';
+  $handler->display->display_options['fields']['field_alternative_contact_number']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: Company Address (दुकान का पता) */
+  $handler->display->display_options['fields']['field_company_address']['id'] = 'field_company_address';
+  $handler->display->display_options['fields']['field_company_address']['table'] = 'field_data_field_company_address';
+  $handler->display->display_options['fields']['field_company_address']['field'] = 'field_company_address';
+  /* Field: Content: City (शहर का नाम) */
+  $handler->display->display_options['fields']['field_city']['id'] = 'field_city';
+  $handler->display->display_options['fields']['field_city']['table'] = 'field_data_field_city';
+  $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
+  /* Field: Content: State (राज्य) */
+  $handler->display->display_options['fields']['field_state']['id'] = 'field_state';
+  $handler->display->display_options['fields']['field_state']['table'] = 'field_data_field_state';
+  $handler->display->display_options['fields']['field_state']['field'] = 'field_state';
+  /* Field: Content: Pin Code */
+  $handler->display->display_options['fields']['field_pin_code']['id'] = 'field_pin_code';
+  $handler->display->display_options['fields']['field_pin_code']['table'] = 'field_data_field_pin_code';
+  $handler->display->display_options['fields']['field_pin_code']['field'] = 'field_pin_code';
+  $handler->display->display_options['fields']['field_pin_code']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: Whatsapp Number */
+  $handler->display->display_options['fields']['field_whatsapp_number']['id'] = 'field_whatsapp_number';
+  $handler->display->display_options['fields']['field_whatsapp_number']['table'] = 'field_data_field_whatsapp_number';
+  $handler->display->display_options['fields']['field_whatsapp_number']['field'] = 'field_whatsapp_number';
+  $handler->display->display_options['fields']['field_whatsapp_number']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: Company Category  (दुकान का प्रकार)  */
+  $handler->display->display_options['fields']['field_company_category']['id'] = 'field_company_category';
+  $handler->display->display_options['fields']['field_company_category']['table'] = 'field_data_field_company_category';
+  $handler->display->display_options['fields']['field_company_category']['field'] = 'field_company_category';
+  $handler->display->display_options['fields']['field_company_category']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Write Category */
+  $handler->display->display_options['fields']['field_write_category']['id'] = 'field_write_category';
+  $handler->display->display_options['fields']['field_write_category']['table'] = 'field_data_field_write_category';
+  $handler->display->display_options['fields']['field_write_category']['field'] = 'field_write_category';
+  /* Field: Content: Transport */
+  $handler->display->display_options['fields']['field_transport']['id'] = 'field_transport';
+  $handler->display->display_options['fields']['field_transport']['table'] = 'field_data_field_transport';
+  $handler->display->display_options['fields']['field_transport']['field'] = 'field_transport';
+  /* Field: Field: Aadhar No */
+  $handler->display->display_options['fields']['field_aadhar_no']['id'] = 'field_aadhar_no';
+  $handler->display->display_options['fields']['field_aadhar_no']['table'] = 'field_data_field_aadhar_no';
+  $handler->display->display_options['fields']['field_aadhar_no']['field'] = 'field_aadhar_no';
+  $handler->display->display_options['fields']['field_aadhar_no']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Account Dept. Contact No. */
+  $handler->display->display_options['fields']['field_account_dept_contact_no_']['id'] = 'field_account_dept_contact_no_';
+  $handler->display->display_options['fields']['field_account_dept_contact_no_']['table'] = 'field_data_field_account_dept_contact_no_';
+  $handler->display->display_options['fields']['field_account_dept_contact_no_']['field'] = 'field_account_dept_contact_no_';
+  $handler->display->display_options['fields']['field_account_dept_contact_no_']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Account Dept. Name */
+  $handler->display->display_options['fields']['field_account_dept_name']['id'] = 'field_account_dept_name';
+  $handler->display->display_options['fields']['field_account_dept_name']['table'] = 'field_data_field_account_dept_name';
+  $handler->display->display_options['fields']['field_account_dept_name']['field'] = 'field_account_dept_name';
+  /* Field: Field: Attach GST Certificate */
+  $handler->display->display_options['fields']['field_attach_gst_certificate']['id'] = 'field_attach_gst_certificate';
+  $handler->display->display_options['fields']['field_attach_gst_certificate']['table'] = 'field_data_field_attach_gst_certificate';
+  $handler->display->display_options['fields']['field_attach_gst_certificate']['field'] = 'field_attach_gst_certificate';
+  $handler->display->display_options['fields']['field_attach_gst_certificate']['click_sort_column'] = 'fid';
+  /* Field: Field: Purchase Dept. Contact No. */
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['id'] = 'field_purchase_dept_contact_no_';
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['table'] = 'field_data_field_purchase_dept_contact_no_';
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['field'] = 'field_purchase_dept_contact_no_';
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Purchase Dept. Name */
+  $handler->display->display_options['fields']['field_purchase_dept_name']['id'] = 'field_purchase_dept_name';
+  $handler->display->display_options['fields']['field_purchase_dept_name']['table'] = 'field_data_field_purchase_dept_name';
+  $handler->display->display_options['fields']['field_purchase_dept_name']['field'] = 'field_purchase_dept_name';
+  /* Field: Field: Stores Dept. Contact No. */
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['id'] = 'field_stores_dept_contact_no_';
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['table'] = 'field_data_field_stores_dept_contact_no_';
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['field'] = 'field_stores_dept_contact_no_';
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Stores Dept. Name */
+  $handler->display->display_options['fields']['field_stores_dept_name']['id'] = 'field_stores_dept_name';
+  $handler->display->display_options['fields']['field_stores_dept_name']['table'] = 'field_data_field_stores_dept_name';
+  $handler->display->display_options['fields']['field_stores_dept_name']['field'] = 'field_stores_dept_name';
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['path'] = 'companies-marketing-info';
 
   /* Display: Data export */
@@ -271,7 +407,7 @@ function marketing_companies_details_views_default_views() {
   $handler->display->display_options['fields']['field_email_id']['table'] = 'field_data_field_email_id';
   $handler->display->display_options['fields']['field_email_id']['field'] = 'field_email_id';
   $handler->display->display_options['fields']['field_email_id']['type'] = 'email_plain';
-  /* Field: Content: Contact Number */
+  /* Field: Content: Contact Number (संपर्क सूत्र)  */
   $handler->display->display_options['fields']['field_owner_contact_number']['id'] = 'field_owner_contact_number';
   $handler->display->display_options['fields']['field_owner_contact_number']['table'] = 'field_data_field_owner_contact_number';
   $handler->display->display_options['fields']['field_owner_contact_number']['field'] = 'field_owner_contact_number';
@@ -279,7 +415,7 @@ function marketing_companies_details_views_default_views() {
     'thousand_separator' => ',',
     'prefix_suffix' => 1,
   );
-  /* Field: Content: Alternative Contact Number */
+  /* Field: Content: Alternative Contact Number (दूसरा संपर्क सूत्र) */
   $handler->display->display_options['fields']['field_alternative_contact_number']['id'] = 'field_alternative_contact_number';
   $handler->display->display_options['fields']['field_alternative_contact_number']['table'] = 'field_data_field_alternative_contact_number';
   $handler->display->display_options['fields']['field_alternative_contact_number']['field'] = 'field_alternative_contact_number';
@@ -287,15 +423,15 @@ function marketing_companies_details_views_default_views() {
     'thousand_separator' => ',',
     'prefix_suffix' => 1,
   );
-  /* Field: Content: Company Address */
+  /* Field: Content: Company Address (दुकान का पता) */
   $handler->display->display_options['fields']['field_company_address']['id'] = 'field_company_address';
   $handler->display->display_options['fields']['field_company_address']['table'] = 'field_data_field_company_address';
   $handler->display->display_options['fields']['field_company_address']['field'] = 'field_company_address';
-  /* Field: Content: City */
+  /* Field: Content: City (शहर का नाम) */
   $handler->display->display_options['fields']['field_city']['id'] = 'field_city';
   $handler->display->display_options['fields']['field_city']['table'] = 'field_data_field_city';
   $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
-  /* Field: Content: State */
+  /* Field: Content: State (राज्य) */
   $handler->display->display_options['fields']['field_state']['id'] = 'field_state';
   $handler->display->display_options['fields']['field_state']['table'] = 'field_data_field_state';
   $handler->display->display_options['fields']['field_state']['field'] = 'field_state';
@@ -315,7 +451,7 @@ function marketing_companies_details_views_default_views() {
     'thousand_separator' => ',',
     'prefix_suffix' => 1,
   );
-  /* Field: Content: Company Category */
+  /* Field: Content: Company Category  (दुकान का प्रकार)  */
   $handler->display->display_options['fields']['field_company_category']['id'] = 'field_company_category';
   $handler->display->display_options['fields']['field_company_category']['table'] = 'field_data_field_company_category';
   $handler->display->display_options['fields']['field_company_category']['field'] = 'field_company_category';
@@ -328,6 +464,63 @@ function marketing_companies_details_views_default_views() {
   $handler->display->display_options['fields']['field_transport']['id'] = 'field_transport';
   $handler->display->display_options['fields']['field_transport']['table'] = 'field_data_field_transport';
   $handler->display->display_options['fields']['field_transport']['field'] = 'field_transport';
+  /* Field: Field: Attach GST Certificate */
+  $handler->display->display_options['fields']['field_attach_gst_certificate']['id'] = 'field_attach_gst_certificate';
+  $handler->display->display_options['fields']['field_attach_gst_certificate']['table'] = 'field_data_field_attach_gst_certificate';
+  $handler->display->display_options['fields']['field_attach_gst_certificate']['field'] = 'field_attach_gst_certificate';
+  $handler->display->display_options['fields']['field_attach_gst_certificate']['click_sort_column'] = 'fid';
+  /* Field: Field: Landline Number */
+  $handler->display->display_options['fields']['field_landline_number']['id'] = 'field_landline_number';
+  $handler->display->display_options['fields']['field_landline_number']['table'] = 'field_data_field_landline_number';
+  $handler->display->display_options['fields']['field_landline_number']['field'] = 'field_landline_number';
+  $handler->display->display_options['fields']['field_landline_number']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Aadhar No */
+  $handler->display->display_options['fields']['field_aadhar_no']['id'] = 'field_aadhar_no';
+  $handler->display->display_options['fields']['field_aadhar_no']['table'] = 'field_data_field_aadhar_no';
+  $handler->display->display_options['fields']['field_aadhar_no']['field'] = 'field_aadhar_no';
+  $handler->display->display_options['fields']['field_aadhar_no']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Account Dept. Contact No. */
+  $handler->display->display_options['fields']['field_account_dept_contact_no_']['id'] = 'field_account_dept_contact_no_';
+  $handler->display->display_options['fields']['field_account_dept_contact_no_']['table'] = 'field_data_field_account_dept_contact_no_';
+  $handler->display->display_options['fields']['field_account_dept_contact_no_']['field'] = 'field_account_dept_contact_no_';
+  $handler->display->display_options['fields']['field_account_dept_contact_no_']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Account Dept. Name */
+  $handler->display->display_options['fields']['field_account_dept_name']['id'] = 'field_account_dept_name';
+  $handler->display->display_options['fields']['field_account_dept_name']['table'] = 'field_data_field_account_dept_name';
+  $handler->display->display_options['fields']['field_account_dept_name']['field'] = 'field_account_dept_name';
+  /* Field: Field: Purchase Dept. Contact No. */
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['id'] = 'field_purchase_dept_contact_no_';
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['table'] = 'field_data_field_purchase_dept_contact_no_';
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['field'] = 'field_purchase_dept_contact_no_';
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Purchase Dept. Name */
+  $handler->display->display_options['fields']['field_purchase_dept_name']['id'] = 'field_purchase_dept_name';
+  $handler->display->display_options['fields']['field_purchase_dept_name']['table'] = 'field_data_field_purchase_dept_name';
+  $handler->display->display_options['fields']['field_purchase_dept_name']['field'] = 'field_purchase_dept_name';
+  /* Field: Field: Stores Dept. Contact No. */
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['id'] = 'field_stores_dept_contact_no_';
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['table'] = 'field_data_field_stores_dept_contact_no_';
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['field'] = 'field_stores_dept_contact_no_';
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Stores Dept. Name */
+  $handler->display->display_options['fields']['field_stores_dept_name']['id'] = 'field_stores_dept_name';
+  $handler->display->display_options['fields']['field_stores_dept_name']['table'] = 'field_data_field_stores_dept_name';
+  $handler->display->display_options['fields']['field_stores_dept_name']['field'] = 'field_stores_dept_name';
   $handler->display->display_options['path'] = 'sites/default/files/marketing-customer-info.xls';
   $handler->display->display_options['displays'] = array(
     'page' => 'page',

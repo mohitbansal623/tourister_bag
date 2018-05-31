@@ -47,7 +47,7 @@ function feature_user_login_signup_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -81,7 +81,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -117,7 +117,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 16,
+      'weight' => 21,
     ),
   );
 
@@ -139,7 +139,7 @@ function feature_user_login_signup_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_authorized_transporter',
     'label' => 'Authorized Transporter',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => 1,
@@ -151,7 +151,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 22,
     ),
   );
 
@@ -185,7 +185,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 11,
     ),
   );
 
@@ -226,7 +226,7 @@ function feature_user_login_signup_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -248,7 +248,7 @@ function feature_user_login_signup_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_gstin_no',
     'label' => 'GSTIN No',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => 1,
@@ -260,7 +260,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 20,
     ),
   );
 
@@ -301,7 +301,7 @@ function feature_user_login_signup_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 21,
+      'weight' => 24,
     ),
   );
 
@@ -328,7 +328,7 @@ function feature_user_login_signup_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_owner_s_contact_no_',
     'label' => 'Owner\'s Contact No.',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'max' => '',
       'min' => '',
@@ -342,7 +342,7 @@ function feature_user_login_signup_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 10,
+      'weight' => 13,
     ),
   );
 
@@ -376,7 +376,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 12,
     ),
   );
 
@@ -416,7 +416,7 @@ function feature_user_login_signup_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -443,7 +443,7 @@ function feature_user_login_signup_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_purchase_dept_contact_no_',
     'label' => 'Purchase Dept. Contact No.',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'max' => '',
       'min' => '',
@@ -457,7 +457,7 @@ function feature_user_login_signup_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 12,
+      'weight' => 15,
     ),
   );
 
@@ -479,7 +479,7 @@ function feature_user_login_signup_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_purchase_dept_name',
     'label' => 'Purchase Dept. Name',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => 1,
@@ -491,7 +491,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 14,
     ),
   );
 
@@ -522,7 +522,7 @@ function feature_user_login_signup_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 7,
+      'weight' => 9,
     ),
   );
 
@@ -549,7 +549,7 @@ function feature_user_login_signup_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_stores_dept_contact_no_',
     'label' => 'Stores Dept. Contact No.',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'max' => '',
       'min' => '',
@@ -563,7 +563,7 @@ function feature_user_login_signup_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 14,
+      'weight' => 17,
     ),
   );
 
@@ -585,7 +585,7 @@ function feature_user_login_signup_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_stores_dept_name',
     'label' => 'Stores Dept. Name',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => 1,
@@ -597,7 +597,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 16,
     ),
   );
 
@@ -638,7 +638,7 @@ function feature_user_login_signup_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 20,
+      'weight' => 23,
     ),
   );
 
@@ -672,7 +672,7 @@ function feature_user_login_signup_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 

@@ -265,6 +265,8 @@ function feature_user_login_signup_field_default_field_bases() {
       'allowed_values' => array(
         'buyer' => 'Buyer',
         'seller' => 'Seller',
+        'agent' => 'Agent',
+        'other' => 'Other',
       ),
       'allowed_values_function' => '',
     ),

@@ -17,11 +17,11 @@ function marketing_companies_details_views_api($module = NULL, $api = NULL) {
 function marketing_companies_details_node_info() {
   $items = array(
     'marketing_details' => array(
-      'name' => t('Marketing Details'),
+      'name' => t('Company Details (दुकानदार की जानकारी)'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Company Name'),
+      'title_label' => t('Company Name (दुकान का नाम)'),
       'help' => '',
     ),
   );
