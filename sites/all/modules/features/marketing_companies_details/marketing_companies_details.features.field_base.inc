@@ -10,6 +10,42 @@
 function marketing_companies_details_field_default_field_bases() {
   $field_bases = array();
 
+  // Exported field_base: 'field_account_dept_contact_no_'.
+  $field_bases['field_account_dept_contact_no_'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_account_dept_contact_no_',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'bigint',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_bigint',
+  );
+
+  // Exported field_base: 'field_account_dept_name'.
+  $field_bases['field_account_dept_name'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_account_dept_name',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_alternative_contact_number'.
   $field_bases['field_alternative_contact_number'] = array(
     'active' => 1,
@@ -104,6 +140,42 @@ function marketing_companies_details_field_default_field_bases() {
     'settings' => array(),
     'translatable' => 0,
     'type' => 'email',
+  );
+
+  // Exported field_base: 'field_gst_number'.
+  $field_bases['field_gst_number'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_gst_number',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_landline_number'.
+  $field_bases['field_landline_number'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_landline_number',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'bigint',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_bigint',
   );
 
   // Exported field_base: 'field_owner_contact_number'.

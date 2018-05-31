@@ -28,7 +28,7 @@ function marketing_companies_details_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -47,
     'customized' => 1,
   );
   // Exported menu link: main-menu_bags:bags.
@@ -52,27 +52,6 @@ function marketing_companies_details_menu_default_menu_links() {
     'weight' => -49,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_marketing-customer-info:companies-marketing-info.
-  $menu_links['main-menu_marketing-customer-info:companies-marketing-info'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'companies-marketing-info',
-    'router_path' => 'companies-marketing-info',
-    'link_title' => 'Marketing Customer Info',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_marketing-customer-info:companies-marketing-info',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => 0,
-    'customized' => 1,
-  );
   // Exported menu link: user-menu_login:user/login.
   $menu_links['user-menu_login:user/login'] = array(
     'menu_name' => 'user-menu',
@@ -84,6 +63,7 @@ function marketing_companies_details_menu_default_menu_links() {
         'title' => '',
       ),
       'identifier' => 'user-menu_login:user/login',
+      'alter' => TRUE,
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -99,7 +79,6 @@ function marketing_companies_details_menu_default_menu_links() {
   t('Admin Interface');
   t('Bags');
   t('Login');
-  t('Marketing Customer Info');
 
   return $menu_links;
 }

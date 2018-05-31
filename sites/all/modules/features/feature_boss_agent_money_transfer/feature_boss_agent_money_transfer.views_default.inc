@@ -145,11 +145,7 @@ function feature_boss_agent_money_transfer_views_default_views() {
     'condensed' => 'condensed',
     'striped' => 0,
   );
-  $handler->display->display_options['style_options']['responsive'] = 0;
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_agent_name_target_id']['id'] = 'field_agent_name_target_id';
-  $handler->display->display_options['relationships']['field_agent_name_target_id']['table'] = 'field_data_field_agent_name';
-  $handler->display->display_options['relationships']['field_agent_name_target_id']['field'] = 'field_agent_name_target_id';
+  $handler->display->display_options['style_options']['responsive'] = 1;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -159,21 +155,17 @@ function feature_boss_agent_money_transfer_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Agent Name */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_agent_name']['id'] = 'field_agent_name';
   $handler->display->display_options['fields']['field_agent_name']['table'] = 'field_data_field_agent_name';
   $handler->display->display_options['fields']['field_agent_name']['field'] = 'field_agent_name';
   $handler->display->display_options['fields']['field_agent_name']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_agent_name']['settings'] = array(
-    'bypass_access' => 0,
-    'link' => 0,
-  );
-  /* Field: Content: Amount Given By */
+  /* Field: Content: Amount Given By (देने वाला) */
   $handler->display->display_options['fields']['field_amount_given_by']['id'] = 'field_amount_given_by';
   $handler->display->display_options['fields']['field_amount_given_by']['table'] = 'field_data_field_amount_given_by';
   $handler->display->display_options['fields']['field_amount_given_by']['field'] = 'field_amount_given_by';
   $handler->display->display_options['fields']['field_amount_given_by']['element_label_colon'] = FALSE;
-  /* Field: Content: Given Amount */
+  /* Field: Content: Amount (रुपए) */
   $handler->display->display_options['fields']['field_amount']['id'] = 'field_amount';
   $handler->display->display_options['fields']['field_amount']['table'] = 'field_data_field_amount';
   $handler->display->display_options['fields']['field_amount']['field'] = 'field_amount';
@@ -183,6 +175,12 @@ function feature_boss_agent_money_transfer_views_default_views() {
     'thousand_separator' => ',',
     'prefix_suffix' => 0,
   );
+  /* Field: Content: Purpose (कारण) */
+  $handler->display->display_options['fields']['field_purpose']['id'] = 'field_purpose';
+  $handler->display->display_options['fields']['field_purpose']['table'] = 'field_data_field_purpose';
+  $handler->display->display_options['fields']['field_purpose']['field'] = 'field_purpose';
+  $handler->display->display_options['fields']['field_purpose']['label'] = 'Purpose';
+  $handler->display->display_options['fields']['field_purpose']['element_label_colon'] = FALSE;
   /* Field: Content: Select Amount Given Date */
   $handler->display->display_options['fields']['field_amout_given_on_date']['id'] = 'field_amout_given_on_date';
   $handler->display->display_options['fields']['field_amout_given_on_date']['table'] = 'field_data_field_amout_given_on_date';
@@ -217,6 +215,41 @@ function feature_boss_agent_money_transfer_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'record_money_transfer' => 'record_money_transfer',
   );
+  /* Filter criterion: Broken/missing handler */
+  $handler->display->display_options['filters']['field_agent_name_target_id']['id'] = 'field_agent_name_target_id';
+  $handler->display->display_options['filters']['field_agent_name_target_id']['table'] = 'field_data_field_agent_name';
+  $handler->display->display_options['filters']['field_agent_name_target_id']['field'] = 'field_agent_name_target_id';
+  $handler->display->display_options['filters']['field_agent_name_target_id']['operator'] = 'in';
+  $handler->display->display_options['filters']['field_agent_name_target_id']['value'] = array();
+  $handler->display->display_options['filters']['field_agent_name_target_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_agent_name_target_id']['expose']['operator_id'] = 'field_agent_name_target_id_op';
+  $handler->display->display_options['filters']['field_agent_name_target_id']['expose']['label'] = 'Agent Name';
+  $handler->display->display_options['filters']['field_agent_name_target_id']['expose']['operator'] = 'field_agent_name_target_id_op';
+  $handler->display->display_options['filters']['field_agent_name_target_id']['expose']['identifier'] = 'field_agent_name_target_id';
+  $handler->display->display_options['filters']['field_agent_name_target_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Content: Select Amount Given Date (field_amout_given_on_date) */
+  $handler->display->display_options['filters']['field_amout_given_on_date_value']['id'] = 'field_amout_given_on_date_value';
+  $handler->display->display_options['filters']['field_amout_given_on_date_value']['table'] = 'field_data_field_amout_given_on_date';
+  $handler->display->display_options['filters']['field_amout_given_on_date_value']['field'] = 'field_amout_given_on_date_value';
+  $handler->display->display_options['filters']['field_amout_given_on_date_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_amout_given_on_date_value']['expose']['operator_id'] = 'field_amout_given_on_date_value_op';
+  $handler->display->display_options['filters']['field_amout_given_on_date_value']['expose']['label'] = 'Select Date';
+  $handler->display->display_options['filters']['field_amout_given_on_date_value']['expose']['operator'] = 'field_amout_given_on_date_value_op';
+  $handler->display->display_options['filters']['field_amout_given_on_date_value']['expose']['identifier'] = 'field_amout_given_on_date_value';
+  $handler->display->display_options['filters']['field_amout_given_on_date_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_amout_given_on_date_value']['form_type'] = 'date_popup';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

@@ -58,6 +58,13 @@ function marketing_companies_details_conditional_fields_default_fields() {
           3 => 0,
           4 => 0,
         ),
+        5 => array(
+          1 => 1,
+          2 => 2,
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
       ),
       'element_edit' => array(
         1 => 1,
@@ -81,13 +88,17 @@ function marketing_companies_details_conditional_fields_default_fields() {
           1 => 1,
           3 => 0,
         ),
+        5 => array(
+          1 => 1,
+          3 => 0,
+        ),
       ),
       'selector' => '',
       'values_set' => 1,
-      'value_form' => 12,
+      'value_form' => 13,
       'value' => array(
         0 => array(
-          'tid' => 12,
+          'tid' => 13,
         ),
       ),
       'values' => array(),

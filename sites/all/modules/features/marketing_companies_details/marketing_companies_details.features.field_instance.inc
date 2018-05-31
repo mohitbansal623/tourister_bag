@@ -10,6 +10,141 @@
 function marketing_companies_details_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'node-marketing_details-field_aadhar_no'.
+  $field_instances['node-marketing_details-field_aadhar_no'] = array(
+    'bundle' => 'marketing_details',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'bigint',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ',',
+        ),
+        'type' => 'number_bigint',
+        'weight' => 23,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_aadhar_no',
+    'label' => 'Aadhar No',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'size' => 60,
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'bigint',
+      'settings' => array(),
+      'type' => 'number_bigint',
+      'weight' => 24,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-marketing_details-field_account_dept_contact_no_'.
+  $field_instances['node-marketing_details-field_account_dept_contact_no_'] = array(
+    'bundle' => 'marketing_details',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'bigint',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ',',
+        ),
+        'type' => 'number_bigint',
+        'weight' => 17,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_account_dept_contact_no_',
+    'label' => 'Account Dept. Contact No.',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'size' => 60,
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'bigint',
+      'settings' => array(),
+      'type' => 'number_bigint',
+      'weight' => 18,
+    ),
+  );
+
+  // Exported field_instance: 'node-marketing_details-field_account_dept_name'.
+  $field_instances['node-marketing_details-field_account_dept_name'] = array(
+    'bundle' => 'marketing_details',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_account_dept_name',
+    'label' => 'Account Dept. Name',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 17,
+    ),
+  );
+
   // Exported field_instance:
   // 'node-marketing_details-field_alternative_contact_number'.
   $field_instances['node-marketing_details-field_alternative_contact_number'] = array(
@@ -39,7 +174,7 @@ function marketing_companies_details_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_alternative_contact_number',
-    'label' => 'Alternative Contact Number',
+    'label' => 'Alternative Contact Number (दूसरा संपर्क सूत्र)',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -54,7 +189,50 @@ function marketing_companies_details_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 5,
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-marketing_details-field_attach_gst_certificate'.
+  $field_instances['node-marketing_details-field_attach_gst_certificate'] = array(
+    'bundle' => 'marketing_details',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_attach_gst_certificate',
+    'label' => 'Attach GST Certificate',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'txt pdf doc jpg docx jpeg',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 13,
     ),
   );
 
@@ -81,7 +259,7 @@ function marketing_companies_details_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_city',
-    'label' => 'City',
+    'label' => 'City (शहर का नाम)',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -94,7 +272,7 @@ function marketing_companies_details_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -121,7 +299,7 @@ function marketing_companies_details_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_company_address',
-    'label' => 'Company Address',
+    'label' => 'Company Address (दुकान का पता)',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -134,7 +312,7 @@ function marketing_companies_details_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -161,7 +339,7 @@ function marketing_companies_details_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_company_category',
-    'label' => 'Company Category',
+    'label' => 'Company Category  (दुकान का प्रकार) ',
     'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -171,7 +349,7 @@ function marketing_companies_details_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -210,7 +388,94 @@ function marketing_companies_details_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 10,
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-marketing_details-field_gst_number'.
+  $field_instances['node-marketing_details-field_gst_number'] = array(
+    'bundle' => 'marketing_details',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_gst_number',
+    'label' => 'GST Number',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'node-marketing_details-field_landline_number'.
+  $field_instances['node-marketing_details-field_landline_number'] = array(
+    'bundle' => 'marketing_details',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'bigint',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ',',
+        ),
+        'type' => 'number_bigint',
+        'weight' => 22,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_landline_number',
+    'label' => 'Landline Number',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'size' => 60,
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'bigint',
+      'settings' => array(),
+      'type' => 'number_bigint',
+      'weight' => 23,
     ),
   );
 
@@ -243,7 +508,7 @@ function marketing_companies_details_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_owner_contact_number',
-    'label' => 'Contact Number',
+    'label' => 'Contact Number (संपर्क सूत्र) ',
     'required' => 1,
     'settings' => array(
       'max' => '',
@@ -258,7 +523,7 @@ function marketing_companies_details_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -286,7 +551,7 @@ function marketing_companies_details_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_owner_name',
     'label' => 'Owner Name',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -298,7 +563,7 @@ function marketing_companies_details_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -345,7 +610,95 @@ function marketing_companies_details_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 9,
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-marketing_details-field_purchase_dept_contact_no_'.
+  $field_instances['node-marketing_details-field_purchase_dept_contact_no_'] = array(
+    'bundle' => 'marketing_details',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'bigint',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ',',
+        ),
+        'type' => 'number_bigint',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_purchase_dept_contact_no_',
+    'label' => 'Purchase Dept. Contact No.',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'size' => 60,
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'bigint',
+      'settings' => array(),
+      'type' => 'number_bigint',
+      'weight' => 20,
+    ),
+  );
+
+  // Exported field_instance: 'node-marketing_details-field_purchase_dept_name'.
+  $field_instances['node-marketing_details-field_purchase_dept_name'] = array(
+    'bundle' => 'marketing_details',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 18,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_purchase_dept_name',
+    'label' => 'Purchase Dept. Name',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 19,
     ),
   );
 
@@ -378,7 +731,7 @@ function marketing_companies_details_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_select_date',
-    'label' => 'Select Date',
+    'label' => 'Select Date (तारीख़ चुने)',
     'required' => 1,
     'settings' => array(
       'default_value' => 'now',
@@ -400,7 +753,7 @@ function marketing_companies_details_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 0,
+      'weight' => 1,
     ),
   );
 
@@ -427,7 +780,7 @@ function marketing_companies_details_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_state',
-    'label' => 'State',
+    'label' => 'State (राज्य)',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -440,7 +793,95 @@ function marketing_companies_details_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-marketing_details-field_stores_dept_contact_no_'.
+  $field_instances['node-marketing_details-field_stores_dept_contact_no_'] = array(
+    'bundle' => 'marketing_details',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'bigint',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ',',
+        ),
+        'type' => 'number_bigint',
+        'weight' => 21,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_stores_dept_contact_no_',
+    'label' => 'Stores Dept. Contact No.',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'size' => 60,
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'bigint',
+      'settings' => array(),
+      'type' => 'number_bigint',
+      'weight' => 22,
+    ),
+  );
+
+  // Exported field_instance: 'node-marketing_details-field_stores_dept_name'.
+  $field_instances['node-marketing_details-field_stores_dept_name'] = array(
+    'bundle' => 'marketing_details',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 20,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_stores_dept_name',
+    'label' => 'Stores Dept. Name',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 21,
     ),
   );
 
@@ -480,7 +921,7 @@ function marketing_companies_details_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -513,7 +954,7 @@ function marketing_companies_details_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_whatsapp_number',
     'label' => 'Whatsapp Number',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'max' => '',
       'min' => '',
@@ -527,7 +968,7 @@ function marketing_companies_details_field_default_field_instances() {
       'module' => 'bigint',
       'settings' => array(),
       'type' => 'number_bigint',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -567,22 +1008,32 @@ function marketing_companies_details_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Alternative Contact Number');
-  t('City');
-  t('Company Address');
-  t('Company Category');
-  t('Contact Number');
+  t('Aadhar No');
+  t('Account Dept. Contact No.');
+  t('Account Dept. Name');
+  t('Alternative Contact Number (दूसरा संपर्क सूत्र)');
+  t('Attach GST Certificate');
+  t('City (शहर का नाम)');
+  t('Company Address (दुकान का पता)');
+  t('Company Category  (दुकान का प्रकार) ');
+  t('Contact Number (संपर्क सूत्र) ');
   t('Email ID');
+  t('GST Number');
+  t('Landline Number');
   t('Owner Name');
   t('Pin Code');
-  t('Select Date');
-  t('State');
+  t('Purchase Dept. Contact No.');
+  t('Purchase Dept. Name');
+  t('Select Date (तारीख़ चुने)');
+  t('State (राज्य)');
+  t('Stores Dept. Contact No.');
+  t('Stores Dept. Name');
   t('Transport');
   t('Whatsapp Number');
   t('Write Category');

@@ -17,7 +17,7 @@ function feature_boss_agent_money_transfer_views_api($module = NULL, $api = NULL
 function feature_boss_agent_money_transfer_node_info() {
   $items = array(
     'record_money_transfer' => array(
-      'name' => t('Boss Agent Money Transfer Record'),
+      'name' => t('Incoming (आवक लिखे )'),
       'base' => 'node_content',
       'description' => t('Make a record of the money flow between agent and boss.'),
       'has_title' => '1',

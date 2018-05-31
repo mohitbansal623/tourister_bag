@@ -29,9 +29,7 @@ function feature_user_login_signup_views_default_views() {
   $handler->display->display_options['access']['perm'] = 'access user profiles';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'input_required';
-  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'filtered_html';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'table';
@@ -160,6 +158,10 @@ function feature_user_login_signup_views_default_views() {
       'empty_column' => 1,
     ),
   );
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -216,12 +218,12 @@ function feature_user_login_signup_views_default_views() {
     'thousand_separator' => '',
     'prefix_suffix' => 1,
   );
-  /* Field: User: Purchase Dept. Name */
+  /* Field: Field: Purchase Dept. Name */
   $handler->display->display_options['fields']['field_purchase_dept_name']['id'] = 'field_purchase_dept_name';
   $handler->display->display_options['fields']['field_purchase_dept_name']['table'] = 'field_data_field_purchase_dept_name';
   $handler->display->display_options['fields']['field_purchase_dept_name']['field'] = 'field_purchase_dept_name';
   $handler->display->display_options['fields']['field_purchase_dept_name']['element_label_colon'] = FALSE;
-  /* Field: User: Purchase Dept. Contact No. */
+  /* Field: Field: Purchase Dept. Contact No. */
   $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['id'] = 'field_purchase_dept_contact_no_';
   $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['table'] = 'field_data_field_purchase_dept_contact_no_';
   $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['field'] = 'field_purchase_dept_contact_no_';
@@ -231,12 +233,12 @@ function feature_user_login_signup_views_default_views() {
     'thousand_separator' => '',
     'prefix_suffix' => 1,
   );
-  /* Field: User: Stores Dept. Name */
+  /* Field: Field: Stores Dept. Name */
   $handler->display->display_options['fields']['field_stores_dept_name']['id'] = 'field_stores_dept_name';
   $handler->display->display_options['fields']['field_stores_dept_name']['table'] = 'field_data_field_stores_dept_name';
   $handler->display->display_options['fields']['field_stores_dept_name']['field'] = 'field_stores_dept_name';
   $handler->display->display_options['fields']['field_stores_dept_name']['element_label_colon'] = FALSE;
-  /* Field: User: Stores Dept. Contact No. */
+  /* Field: Field: Stores Dept. Contact No. */
   $handler->display->display_options['fields']['field_stores_dept_contact_no_']['id'] = 'field_stores_dept_contact_no_';
   $handler->display->display_options['fields']['field_stores_dept_contact_no_']['table'] = 'field_data_field_stores_dept_contact_no_';
   $handler->display->display_options['fields']['field_stores_dept_contact_no_']['field'] = 'field_stores_dept_contact_no_';
@@ -261,7 +263,7 @@ function feature_user_login_signup_views_default_views() {
     'thousand_separator' => '',
     'prefix_suffix' => 1,
   );
-  /* Field: User: Aadhar No */
+  /* Field: Field: Aadhar No */
   $handler->display->display_options['fields']['field_aadhar_no']['id'] = 'field_aadhar_no';
   $handler->display->display_options['fields']['field_aadhar_no']['table'] = 'field_data_field_aadhar_no';
   $handler->display->display_options['fields']['field_aadhar_no']['field'] = 'field_aadhar_no';
@@ -296,14 +298,158 @@ function feature_user_login_signup_views_default_views() {
     2 => '2',
     1 => 0,
     3 => 0,
+    4 => 0,
+    5 => 0,
   );
-
-  /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block');
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No Results Found';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   $handler->display->display_options['path'] = 'all-user-information';
+
+  /* Display: Data export */
+  $handler = $view->new_display('views_data_export', 'Data export', 'views_data_export_1');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_xls';
+  $handler->display->display_options['style_options']['attach_text'] = 'Excel';
+  $handler->display->display_options['style_options']['provide_file'] = 1;
+  $handler->display->display_options['style_options']['filename'] = 'all-user-information-%timestamp-dd-%timestamp-mmm.xls';
+  $handler->display->display_options['style_options']['parent_sort'] = 0;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  /* Field: User: Address */
+  $handler->display->display_options['fields']['field_address']['id'] = 'field_address';
+  $handler->display->display_options['fields']['field_address']['table'] = 'field_data_field_address';
+  $handler->display->display_options['fields']['field_address']['field'] = 'field_address';
+  $handler->display->display_options['fields']['field_address']['element_label_colon'] = FALSE;
+  /* Field: User: Pincode */
+  $handler->display->display_options['fields']['field_pincode']['id'] = 'field_pincode';
+  $handler->display->display_options['fields']['field_pincode']['table'] = 'field_data_field_pincode';
+  $handler->display->display_options['fields']['field_pincode']['field'] = 'field_pincode';
+  $handler->display->display_options['fields']['field_pincode']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_pincode']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Field: User: Company Name */
+  $handler->display->display_options['fields']['field_company_name']['id'] = 'field_company_name';
+  $handler->display->display_options['fields']['field_company_name']['table'] = 'field_data_field_company_name';
+  $handler->display->display_options['fields']['field_company_name']['field'] = 'field_company_name';
+  $handler->display->display_options['fields']['field_company_name']['element_label_colon'] = FALSE;
+  /* Field: User: Contact Number */
+  $handler->display->display_options['fields']['field_contact_number']['id'] = 'field_contact_number';
+  $handler->display->display_options['fields']['field_contact_number']['table'] = 'field_data_field_contact_number';
+  $handler->display->display_options['fields']['field_contact_number']['field'] = 'field_contact_number';
+  $handler->display->display_options['fields']['field_contact_number']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_contact_number']['type'] = 'number_integer';
+  $handler->display->display_options['fields']['field_contact_number']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Field: User: GSTIN No */
+  $handler->display->display_options['fields']['field_gstin_no']['id'] = 'field_gstin_no';
+  $handler->display->display_options['fields']['field_gstin_no']['table'] = 'field_data_field_gstin_no';
+  $handler->display->display_options['fields']['field_gstin_no']['field'] = 'field_gstin_no';
+  $handler->display->display_options['fields']['field_gstin_no']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_gstin_no']['hide_empty'] = TRUE;
+  /* Field: User: Owner's name */
+  $handler->display->display_options['fields']['field_owner_s_name']['id'] = 'field_owner_s_name';
+  $handler->display->display_options['fields']['field_owner_s_name']['table'] = 'field_data_field_owner_s_name';
+  $handler->display->display_options['fields']['field_owner_s_name']['field'] = 'field_owner_s_name';
+  $handler->display->display_options['fields']['field_owner_s_name']['element_label_colon'] = FALSE;
+  /* Field: User: Owner's Contact No. */
+  $handler->display->display_options['fields']['field_owner_s_contact_no_']['id'] = 'field_owner_s_contact_no_';
+  $handler->display->display_options['fields']['field_owner_s_contact_no_']['table'] = 'field_data_field_owner_s_contact_no_';
+  $handler->display->display_options['fields']['field_owner_s_contact_no_']['field'] = 'field_owner_s_contact_no_';
+  $handler->display->display_options['fields']['field_owner_s_contact_no_']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_owner_s_contact_no_']['type'] = 'number_integer';
+  $handler->display->display_options['fields']['field_owner_s_contact_no_']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Purchase Dept. Name */
+  $handler->display->display_options['fields']['field_purchase_dept_name']['id'] = 'field_purchase_dept_name';
+  $handler->display->display_options['fields']['field_purchase_dept_name']['table'] = 'field_data_field_purchase_dept_name';
+  $handler->display->display_options['fields']['field_purchase_dept_name']['field'] = 'field_purchase_dept_name';
+  $handler->display->display_options['fields']['field_purchase_dept_name']['element_label_colon'] = FALSE;
+  /* Field: Field: Purchase Dept. Contact No. */
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['id'] = 'field_purchase_dept_contact_no_';
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['table'] = 'field_data_field_purchase_dept_contact_no_';
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['field'] = 'field_purchase_dept_contact_no_';
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['type'] = 'number_integer';
+  $handler->display->display_options['fields']['field_purchase_dept_contact_no_']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Stores Dept. Name */
+  $handler->display->display_options['fields']['field_stores_dept_name']['id'] = 'field_stores_dept_name';
+  $handler->display->display_options['fields']['field_stores_dept_name']['table'] = 'field_data_field_stores_dept_name';
+  $handler->display->display_options['fields']['field_stores_dept_name']['field'] = 'field_stores_dept_name';
+  $handler->display->display_options['fields']['field_stores_dept_name']['element_label_colon'] = FALSE;
+  /* Field: Field: Stores Dept. Contact No. */
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['id'] = 'field_stores_dept_contact_no_';
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['table'] = 'field_data_field_stores_dept_contact_no_';
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['field'] = 'field_stores_dept_contact_no_';
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['type'] = 'number_integer';
+  $handler->display->display_options['fields']['field_stores_dept_contact_no_']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Field: User: Authorized Transporter */
+  $handler->display->display_options['fields']['field_authorized_transporter']['id'] = 'field_authorized_transporter';
+  $handler->display->display_options['fields']['field_authorized_transporter']['table'] = 'field_data_field_authorized_transporter';
+  $handler->display->display_options['fields']['field_authorized_transporter']['field'] = 'field_authorized_transporter';
+  $handler->display->display_options['fields']['field_authorized_transporter']['element_label_colon'] = FALSE;
+  /* Field: User: Office Contact No. */
+  $handler->display->display_options['fields']['field_office_contact_no_']['id'] = 'field_office_contact_no_';
+  $handler->display->display_options['fields']['field_office_contact_no_']['table'] = 'field_data_field_office_contact_no_';
+  $handler->display->display_options['fields']['field_office_contact_no_']['field'] = 'field_office_contact_no_';
+  $handler->display->display_options['fields']['field_office_contact_no_']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_office_contact_no_']['type'] = 'number_integer';
+  $handler->display->display_options['fields']['field_office_contact_no_']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Aadhar No */
+  $handler->display->display_options['fields']['field_aadhar_no']['id'] = 'field_aadhar_no';
+  $handler->display->display_options['fields']['field_aadhar_no']['table'] = 'field_data_field_aadhar_no';
+  $handler->display->display_options['fields']['field_aadhar_no']['field'] = 'field_aadhar_no';
+  $handler->display->display_options['fields']['field_aadhar_no']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_aadhar_no']['type'] = 'number_integer';
+  $handler->display->display_options['fields']['field_aadhar_no']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Field: User: Select Category */
+  $handler->display->display_options['fields']['field_select_category']['id'] = 'field_select_category';
+  $handler->display->display_options['fields']['field_select_category']['table'] = 'field_data_field_select_category';
+  $handler->display->display_options['fields']['field_select_category']['field'] = 'field_select_category';
+  $handler->display->display_options['fields']['field_select_category']['label'] = 'User Category';
+  $handler->display->display_options['fields']['field_select_category']['element_label_colon'] = FALSE;
+  /* Field: User: Other Category */
+  $handler->display->display_options['fields']['field_other_category']['id'] = 'field_other_category';
+  $handler->display->display_options['fields']['field_other_category']['table'] = 'field_data_field_other_category';
+  $handler->display->display_options['fields']['field_other_category']['field'] = 'field_other_category';
+  $handler->display->display_options['fields']['field_other_category']['element_label_colon'] = FALSE;
+  $handler->display->display_options['path'] = 'sites/default/files/all-user-information.xls';
+  $handler->display->display_options['displays'] = array(
+    'page_1' => 'page_1',
+    'default' => 0,
+  );
   $export['user_information'] = $view;
 
   return $export;

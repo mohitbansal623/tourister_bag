@@ -33,7 +33,7 @@ function agent_expenses_feature_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_amount_spend',
-    'label' => 'Amount Spend',
+    'label' => 'Amount Spend (रुपये लिखे)',
     'required' => 1,
     'settings' => array(
       'max' => '',
@@ -69,7 +69,7 @@ function agent_expenses_feature_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_expense_type',
-    'label' => 'Expense Type',
+    'label' => 'Expense Type (खर्च का प्रकार)',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -115,7 +115,7 @@ function agent_expenses_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_enter_expenses',
-    'label' => 'Enter Expenses',
+    'label' => 'Enter Expenses (खर्च लिखे)',
     'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -158,7 +158,7 @@ function agent_expenses_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_select_date',
-    'label' => 'Select Date',
+    'label' => 'Select Date (तारीख़ चुने)',
     'required' => 1,
     'settings' => array(
       'default_value' => 'now',
@@ -186,10 +186,10 @@ function agent_expenses_feature_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Amount Spend');
-  t('Enter Expenses');
-  t('Expense Type');
-  t('Select Date');
+  t('Amount Spend (रुपये लिखे)');
+  t('Enter Expenses (खर्च लिखे)');
+  t('Expense Type (खर्च का प्रकार)');
+  t('Select Date (तारीख़ चुने)');
 
   return $field_instances;
 }
