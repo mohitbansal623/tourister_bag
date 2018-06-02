@@ -1369,6 +1369,9 @@ function commerce_order_calculate_total($order) {
   }
 
   // Update the order total price field with the final total amount and data.
+
+  $amount = $order_total['data']['components'][0]['price']['amount'];
+
   $order_wrapper->commerce_order_total->amount = round($amount);
   $order_wrapper->commerce_order_total->data = $order_total['data'];
 }

@@ -1527,6 +1527,9 @@ function commerce_discount_calculate_order_total($order_wrapper) {
     $order_total['data'] = commerce_price_components_combine($order_total, $line_item_total);
   }
 
+  // dpm($order_total['data']);
+  $amount = $order_total['data']['components'][0]['price']['amount'];
+
   // Update the order total price field with the final total amount and data.
   $order_wrapper->commerce_order_total->amount = round($amount);
   $order_wrapper->commerce_order_total->data = $order_total['data'];
