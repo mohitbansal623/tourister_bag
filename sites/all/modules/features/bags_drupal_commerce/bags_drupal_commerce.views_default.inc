@@ -112,6 +112,26 @@ function bags_drupal_commerce_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'bags' => 'bags',
   );
+  /* Filter criterion: Commerce Product: Select Bags Category (field_select_bags_category) */
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['id'] = 'field_select_bags_category_tid';
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['table'] = 'field_data_field_select_bags_category';
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['field'] = 'field_select_bags_category_tid';
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['relationship'] = 'field_bags_reference_product_id';
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['expose']['operator_id'] = 'field_select_bags_category_tid_op';
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['expose']['label'] = 'Select Product Category';
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['expose']['operator'] = 'field_select_bags_category_tid_op';
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['expose']['identifier'] = 'field_select_bags_category_tid';
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['vocabulary'] = 'bags_category';
+  $handler->display->display_options['filters']['field_select_bags_category_tid']['hierarchy'] = 1;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
