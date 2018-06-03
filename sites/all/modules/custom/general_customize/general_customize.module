@@ -4,6 +4,19 @@
  */
 function general_customize_form_alter(&$form, &$form_state, $form_id) {
   unset($form['account']['roles']['#options'][3]);
+
+  if ($form_id == 'marketing_details_node_form' || $form_id == 'record_money_transfer_node_form' || $form_id == 'agent_expenses_record_node_form' || $form_id == 'bags_node_form') {
+    $form['actions']['submit']['#value'] = 'Save ( सुरक्षित करे)';
+    $form['actions']['preview']['#value'] = 'Preview ( एक बार देख ले)';
+    $form['field_enter_expenses']['und']['add_more']['#value'] = 'Add another item ( अगला खर्च लिखे)';
+    foreach ($form['field_enter_expenses']['und'] as $key => $value) {
+      if (is_numeric($key)) {
+        $form['field_enter_expenses']['und'][$key]['remove_button']['#value'] = 'Remove ( हटाये)';
+      }
+
+    }
+
+  }
 }
 
 function general_customize_user_login(&$edit, $account) {

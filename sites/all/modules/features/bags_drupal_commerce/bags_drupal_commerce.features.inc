@@ -56,7 +56,7 @@ function bags_drupal_commerce_image_default_styles() {
 function bags_drupal_commerce_node_info() {
   $items = array(
     'bags' => array(
-      'name' => t('Bags'),
+      'name' => t('Products'),
       'base' => 'node_content',
       'description' => t('Display Bags'),
       'has_title' => '1',
