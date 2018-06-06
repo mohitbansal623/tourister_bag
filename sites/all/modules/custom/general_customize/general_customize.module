@@ -5,10 +5,18 @@
  */
 function general_customize_init() {
   $path = drupal_get_path_alias();
-  $patterns = 'cheque/*';
+  $pattern = 'cheque/*';
+  $pattern1 = 'cash-slip/*';
+  $pattern2 = 'cash-slip-bank/*';
+  $pattern3 = 'neft/*';
 
-  if (drupal_match_path($path, $patterns)) {
-    drupal_goto('checkout/' . $_SESSION['order-id'] .'/complete');
+  if (drupal_match_path($path, $pattern) || drupal_match_path($path, $pattern1) || drupal_match_path($path, $pattern2) || drupal_match_path($path, $pattern3)) {
+    if (isset($_SESSION['order-id'])) {
+      $order = commerce_order_load($_SESSION['order-id']);
+      commerce_checkout_complete($order);
+
+      drupal_goto('checkout/' . $_SESSION['order-id'] .'/complete');
+    }
   }
 
   $patterns = 'checkout/*/complete';
@@ -21,6 +29,7 @@ function general_customize_init() {
  * Implements form alter.
  */
 function general_customize_form_alter(&$form, &$form_state, $form_id) {
+  dpm($form_id);
   unset($form['account']['roles']['#options'][3]);
   if ($form_id == 'marketing_details_node_form' || $form_id == 'record_money_transfer_node_form' || $form_id == 'agent_expenses_record_node_form' || $form_id == 'bags_node_form') {
     $form['actions']['submit']['#value'] = 'Save ( सुरक्षित करे)';
@@ -39,7 +48,7 @@ function general_customize_form_alter(&$form, &$form_state, $form_id) {
       // $form['buttons']['continue']['#submit'][] = array_unshift($form['buttons']['continue']['#submit'], "check_value_payment");
   }
 
-  elseif($form_id == 'upload_cheque_node_form') {
+  elseif ($form_id == 'upload_cheque_node_form' || $form_id == 'upload_cash_slip_node_form' || $form_id == 'upload_cash_slip_bank_node_form' || $form_id == 'upload_neft_slip_node_form') {
     if (isset($_SESSION['order-id'])) {
       $form['field_order_id']['und'][0]['value']['#default_value'] = $_SESSION['order-id'];
     }

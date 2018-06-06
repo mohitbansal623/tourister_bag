@@ -392,18 +392,27 @@ function commerce_checkout_form_submit($form, &$form_state) {
   // If the form was submitted via the continue button...
   if (end($form_state['triggering_element']['#array_parents']) == 'continue') {
     // If there is another checkout page...
-    if ($checkout_page['next_page']) {
+    if (isset($form_state['values']['commerce_payment']['payment_method']) && $form_state['values']['commerce_payment']['payment_method']  == "payment_via_cheque|commerce_payment_payment_via_cheque") {
+          drupal_goto('node/add/upload-cheque');
+    }
+    elseif (isset($form_state['values']['commerce_payment']['payment_method']) && $form_state['values']['commerce_payment']['payment_method']  == "payment_via_neft|commerce_payment_payment_via_neft") {
+          drupal_goto('node/add/upload-neft-slip');
+    }
+    elseif (isset($form_state['values']['commerce_payment']['payment_method']) && $form_state['values']['commerce_payment']['payment_method']  == "payment_via_cash_slip_bank_|commerce_payment_payment_via_cash_slip_bank_") {
+          drupal_goto('node/add/upload-cash-slip-bank');
+    }
+    elseif (isset($form_state['values']['commerce_payment']['payment_method']) && $form_state['values']['commerce_payment']['payment_method']  == "payment_via_cash|commerce_payment_payment_via_cash") {
+          drupal_goto('node/add/upload-cash-slip');
+    }
+    elseif ($checkout_page['next_page']) {
       // Update the order status to reflect the next checkout page.
       $order = commerce_order_status_update($order, 'checkout_' . $checkout_page['next_page'], FALSE, NULL, t('Customer continued to the next checkout page via a submit button.'));
 
       // If it happens to be the complete page, process completion now.
-      if ($checkout_page['next_page'] == 'complete') {
-        commerce_checkout_complete($order);
-      }
+      // if ($checkout_page['next_page'] == 'complete') {
+      //   commerce_checkout_complete($order);
+      // }
 
-      if (isset($form_state['values']['commerce_payment']['payment_method']) && $form_state['values']['commerce_payment']['payment_method']  == "payment_via_cheque|commerce_payment_payment_via_cheque") {
-          drupal_goto('node/add/upload-cheque');
-      }
 
       // Redirect to the next checkout page.
       $form_state['redirect'] = 'checkout/' . $order->order_id . '/' . $checkout_page['next_page'];
