@@ -1,10 +1,36 @@
 <?php
+
+/**
+ * Implements hook_init().
+ */
+function general_customize_init() {
+  $path = drupal_get_path_alias();
+  $pattern = 'cheque/*';
+  $pattern1 = 'cash-slip/*';
+  $pattern2 = 'cash-slip-bank/*';
+  $pattern3 = 'neft/*';
+
+  if (drupal_match_path($path, $pattern) || drupal_match_path($path, $pattern1) || drupal_match_path($path, $pattern2) || drupal_match_path($path, $pattern3)) {
+    if (isset($_SESSION['order-id'])) {
+      $order = commerce_order_load($_SESSION['order-id']);
+      commerce_checkout_complete($order);
+
+      drupal_goto('checkout/' . $_SESSION['order-id'] .'/complete');
+    }
+  }
+
+  $patterns = 'checkout/*/complete';
+  if (drupal_match_path($path, $patterns)) {
+    unset($_SESSION['order-id']);
+  }
+
+}
 /**
  * Implements form alter.
  */
 function general_customize_form_alter(&$form, &$form_state, $form_id) {
+  dpm($form_id);
   unset($form['account']['roles']['#options'][3]);
-
   if ($form_id == 'marketing_details_node_form' || $form_id == 'record_money_transfer_node_form' || $form_id == 'agent_expenses_record_node_form' || $form_id == 'bags_node_form') {
     $form['actions']['submit']['#value'] = 'Save ( सुरक्षित करे)';
     $form['actions']['preview']['#value'] = 'Preview ( एक बार देख ले)';
@@ -15,9 +41,28 @@ function general_customize_form_alter(&$form, &$form_state, $form_id) {
       }
 
     }
+  }
 
+  elseif ($form_id == 'commerce_checkout_form_review') {
+      $_SESSION['order-id'] = is_numeric(arg(1))? arg(1) : $_SESSION['order-id'];
+      // $form['buttons']['continue']['#submit'][] = array_unshift($form['buttons']['continue']['#submit'], "check_value_payment");
+  }
+
+  elseif ($form_id == 'upload_cheque_node_form' || $form_id == 'upload_cash_slip_node_form' || $form_id == 'upload_cash_slip_bank_node_form' || $form_id == 'upload_neft_slip_node_form') {
+    if (isset($_SESSION['order-id'])) {
+      $form['field_order_id']['und'][0]['value']['#default_value'] = $_SESSION['order-id'];
+    }
   }
 }
+
+// function check_value_payment(&$form, &$form_state) {
+//     $_SESSION['checkout_form_state'] = $form_state;
+//     dpm($form_state);
+//     dpm($form_state['values']['commerce_payment']['payment_method']);
+//     if ($form_state['values']['commerce_payment']['payment_method'] == "payment_via_cheque|commerce_payment_payment_via_cheque") {
+//       drupal_goto('node/add/upload-cheque');
+//     }
+//  }
 
 function general_customize_user_login(&$edit, $account) {
   // dpm($_SESSION);
