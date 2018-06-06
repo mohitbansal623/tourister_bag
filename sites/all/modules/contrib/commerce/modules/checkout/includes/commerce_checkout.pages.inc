@@ -376,7 +376,6 @@ function commerce_checkout_form_validate($form, &$form_state) {
  */
 function commerce_checkout_form_submit($form, &$form_state) {
   $checkout_page = $form_state['checkout_page'];
-
   // Load a fresh copy of the order stored in the form.
   $order = commerce_order_load($form_state['order']->order_id);
 
@@ -400,6 +399,10 @@ function commerce_checkout_form_submit($form, &$form_state) {
       // If it happens to be the complete page, process completion now.
       if ($checkout_page['next_page'] == 'complete') {
         commerce_checkout_complete($order);
+      }
+
+      if (isset($form_state['values']['commerce_payment']['payment_method']) && $form_state['values']['commerce_payment']['payment_method']  == "payment_via_cheque|commerce_payment_payment_via_cheque") {
+          drupal_goto('node/add/upload-cheque');
       }
 
       // Redirect to the next checkout page.
