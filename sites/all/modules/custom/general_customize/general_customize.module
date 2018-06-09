@@ -29,7 +29,7 @@ function general_customize_init() {
  * Implements form alter.
  */
 function general_customize_form_alter(&$form, &$form_state, $form_id) {
-  dpm($form_id);
+  // dpm($form_id);
   unset($form['account']['roles']['#options'][3]);
   if ($form_id == 'marketing_details_node_form' || $form_id == 'record_money_transfer_node_form' || $form_id == 'agent_expenses_record_node_form' || $form_id == 'bags_node_form') {
     $form['actions']['submit']['#value'] = 'Save ( सुरक्षित करे)';
