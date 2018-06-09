@@ -1,0 +1,231 @@
+<?php
+
+/**
+ * @file
+ * SMS module.
+ */
+
+
+ /**
+ * Implements hook_permission().
+ */
+function sms_configuration_permission() {
+  return array(
+    'view SMS settings' => array(
+      'title' => t('View SMS settings'),
+      'description' => t('Allow users with this role to view SMS settings for adjusting messages.'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function sms_configuration_menu() {
+
+  $items = array();
+
+  $items['admin/config/sms/settings'] = array(
+    'title' => 'SMS by MSG 91',
+    'description' => 'Configuration for SMS by MSG91',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sms_configuration_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'sms_configuration.admin.inc',
+  );
+
+  $items['admin/config/sms/messages'] = array(
+    'title' => 'SMS Messages',
+    'description' => 'Different message for different forms',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sms_configuration_messages_form'),
+    'access arguments' => array('view SMS settings'),
+    'file' => 'sms_configuration.admin.inc',
+  );
+
+
+  return $items;
+}
+
+
+/**
+ * Implements hook_block_info().
+ */
+function sms_configuration_block_info() {
+  $blocks['smsmsg91-smssender'] = array(
+    'info' => t('Send SMS using MSG91'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function sms_configuration_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'smsmsg91-smssender':
+      $block['subject'] = t('Send SMS');
+      $block['content'] = drupal_get_form('sms_configuration_sms_form');
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Form to Send SMS .
+ */
+function sms_configuration_sms_form($form, &$form_state) {
+
+  $form = array();
+  $form['mobile_number'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Mobile Number',
+    '#description' => 'Each Mobile Number is separated by comma.(,)',
+    '#size' => 20,
+    '#maxlength' => 150,
+    '#required' => TRUE,
+  );
+
+  $form['sms_message'] = array(
+    '#type' => 'textarea',
+    '#title' => 'Message',
+    '#size' => 256,
+    '#maxlength' => 256,
+    '#required' => FALSE,
+  );
+
+  $form['submit_button'] = array(
+    '#type' => 'submit',
+    '#value' => t('Send SMS Now'),
+    '#submit' => array('sms_configuration_sms_form_submit'),
+  );
+
+  return $form;
+}
+
+/**
+ * SMS form submit.
+ */
+function sms_configuration_sms_form_submit($form, &$form_state) {
+
+  $mobile = $form_state['values']['mobile_number'];
+  $sms_message = $form_state['values']['sms_message'];
+
+  /*Send SMS using PHP*/
+
+  // This will be set up from Settings variables.
+  $auth_key = variable_get('smsmsg91_authKey');
+
+  // Multiple mobiles numbers separated by comma.
+  $mobile_number = $mobile;
+
+  // Sender ID,While using route4 sender id should be 6 characters long.
+  // To be set up in settings variables.
+  $sender_id = variable_get('smsmsg91_senderID');
+
+  // Your message to send, Add URL encoding here.
+  $message = urlencode($sms_message);
+
+  // Define route.
+  $route = variable_get('smsmsg91_route');
+  // Prepare you post parameters.
+  // Function for sending message.
+  sms_configuration_send_message($mobile_number, $message, $sender_id, $route);
+
+  // To be decided $form_state['redirect'] = '/';.
+}
+
+/**
+ * Function for sending SMS.
+ */
+function sms_configuration_send_message($mobile_number, $message, $sender_id, $route) {
+
+  if (empty($mobile_number)) {
+    watchdog('SMSMSG91', 'Please provide mobile number for sending SMS', WATCHDOG_ERROR);
+    return FALSE;
+  }
+  if (empty($sender_id)) {
+    $sender_id = variable_get('smsmsg91_senderID');
+  }
+  if (empty($route)) {
+    $route = variable_get('smsmsg91_route');
+  }
+
+  $auth_key = variable_get('smsmsg91_authKey', '');
+
+  if (!empty($auth_key)) {
+
+    $post_data = array(
+      'authkey' => $auth_key,
+      'mobiles' => $mobile_number,
+      'message' => $message,
+      'sender' => $sender_id,
+      'route' => $route,
+    );
+
+    // API URL.
+    $url = "https://control.msg91.com/api/sendhttp.php";
+
+    // Init the resource.
+    $ch = curl_init();
+    curl_setopt_array($ch, array(
+      CURLOPT_URL => $url,
+      CURLOPT_RETURNTRANSFER => TRUE,
+      CURLOPT_POST => TRUE,
+      CURLOPT_POSTFIELDS => $post_data,
+          // ,CURLOPT_FOLLOWLOCATION => true.
+    ));
+
+    // Ignore SSL certificate verification.
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+    // Get response.
+    $output = curl_exec($ch);
+
+    // Print error if any.
+    if (curl_errno($ch)) {
+      watchdog('SMSMSG91', 'Error while sending SMS');
+      echo 'error:' . curl_error($ch);
+    }
+
+    curl_close($ch);
+    drupal_set_message(t('SMS Sent'));
+    watchdog('SMSMSG91', 'SMS sent to Mobile Number %mobileNumber', array('%mobileNumber' => $mobile_number));
+
+  }
+  else {
+    watchdog('SMSMSG91', 'Please set authkey for MSG91 in order to send SMS', WATCHDOG_ERROR);
+    return FALSE;
+  }
+}
+
+/**
+ * Implements hook_user_insert().
+ */
+function sms_configuration_user_insert(&$edit, $account, $category) {
+  if (!empty($account->field_user_name)) {
+    $name = $account->field_user_name['und'][0]['value'];
+  }
+
+  $username = $account->name;
+  $password  = variable_get('sms_user_password', '');
+
+  if (!empty($account->field_contact_number)) {
+    $mobile_number = $account->field_contact_number['und'][0]['value'];
+  }
+
+  $message = variable_get('sms_user_register', '');
+  $message = str_replace('%name', $name, $message);
+  $message = str_replace('%username', $username, $message);
+  $message = str_replace('%password', $password, $message);
+
+  $sender_id = variable_get('smsmsg91_senderID');
+  $route = variable_get('smsmsg91_route');
+
+  sms_configuration_send_message($mobile_number, $message, $sender_id, $route);
+
+}

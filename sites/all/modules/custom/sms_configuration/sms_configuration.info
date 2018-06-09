@@ -1,0 +1,3 @@
+name = SMS Configurations
+description = Send SMS from your website.
+core = 7.x
