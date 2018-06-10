@@ -15,12 +15,19 @@
     .block-title {
       display: none;
     }
-    .footer-distributed{
-      .footer-left, .footer-center, .footer-right {
+    .footer-distributed {
+      .footer-left, .footer-right {
         display: inline-block;
       	vertical-align: top;
-        width: 32%;
+        width: 25%;
       }
+
+      .footer-center {
+        display: inline-block;
+        vertical-align: top;
+        width: 45%;
+      }
+
       .footer-left {
         h3{
           color:  #ffffff;
