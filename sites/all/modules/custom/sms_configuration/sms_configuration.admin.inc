@@ -83,16 +83,6 @@ function sms_configuration_messages_form() {
     '#required' => FALSE,
   );
 
-  $form['sms_upload_cash_slip'] = array(
-    '#type' => 'textarea',
-    '#title' => 'Message for upload cash slip',
-    '#description' => '',
-    '#default_value' => variable_get('sms_upload_cash_slip', ''),
-    '#size' => 256,
-    '#maxlength' => 256,
-    '#required' => FALSE,
-  );
-
   $form['sms_upload_cash_slip_bank'] = array(
     '#type' => 'textarea',
     '#title' => 'Message for upload cash slip by bank',
@@ -123,11 +113,31 @@ function sms_configuration_messages_form() {
     '#required' => FALSE,
   );
 
+  $form['sms_msg_for_courier'] = array(
+    '#type' => 'textarea',
+    '#title' => 'Message send to courier.',
+    '#description' => '',
+    '#default_value' => variable_get('sms_msg_for_courier', ''),
+    '#size' => 256,
+    '#maxlength' => 256,
+    '#required' => FALSE,
+  );
+
   $form['sms_user_password'] = array(
     '#type' => 'textfield',
     '#title' => 'Password of the user which will be send to user for first time.',
     '#description' => '',
     '#default_value' => variable_get('sms_user_password', ''),
+    '#size' => 60,
+    '#maxlength' => 60,
+    '#required' => FALSE,
+  );
+
+  $form['courier_mobile_number'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Mobile Number of a Courier',
+    '#description' => '',
+    '#default_value' => variable_get('courier_mobile_number', ''),
     '#size' => 60,
     '#maxlength' => 60,
     '#required' => FALSE,
