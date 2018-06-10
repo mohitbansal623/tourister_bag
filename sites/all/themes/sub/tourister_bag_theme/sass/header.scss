@@ -12,10 +12,20 @@ header#navbar.navbar.container {
       margin: 10px 0px;
     }
 
+    .logo.navbar-btn {
+      display: inline-block;
+
+      img {
+        width : 60px;
+      }
+    }
+
     h3 {
       margin: 0;
       color: #ffffff;
       font: normal 36px 'Cookie', cursive;
+      display: inline-block;
+      margin-top: 12px;
 
       a {
         font-size: 32px;
@@ -38,6 +48,7 @@ header#navbar.navbar.container {
     nav{
       @media screen and (min-width: 768px) {
         float: right;
+        margin-top: 12px;
       }
     }
     ul.navbar-nav {
