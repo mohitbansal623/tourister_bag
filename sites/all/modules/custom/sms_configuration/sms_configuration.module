@@ -229,3 +229,57 @@ function sms_configuration_user_insert(&$edit, $account, $category) {
   sms_configuration_send_message($mobile_number, $message, $sender_id, $route);
 
 }
+
+/**
+ * Implements hook_node_insert().
+ */
+function sms_configuration_node_insert($node) {
+  global $user;
+  // if ($node->type = 'upload_cash_slip' || $node->type = 'upload_cash_slip_bank' || $node->type = 'upload_cheque' || $node->type = 'upload_neft_slip') {
+
+    $uid = $user->uid;
+    $user = user_load($uid);
+    if (!empty($user->field_contact_number)) {
+      $user_mobile_number = $user->field_contact_number['und'][0]['value'];
+    }
+    $courier_mobile_number = variable_get('courier_mobile_number', '');
+
+    if ($node->type = 'upload_cash_slip') {
+      $message = variable_get('sms_upload_cash_slip', '');
+    }
+    elseif ($node->type = 'upload_cash_slip_bank') {
+      $message = variable_get('sms_upload_cash_slip_bank', '');
+    }
+    elseif ($node->type = 'upload_cheque') {
+      $message = variable_get('sms_upload_cheque', '');
+    }
+    elseif ($node->type = 'upload_neft_slip') {
+      $message = variable_get('sms_upload_neft_slip', '');
+    }
+
+    if (!empty($message)) {
+      if (!empty($node->field_order_id)) {
+        $order_id = $node->field_order_id['und'][0]['value'];
+        $message = str_replace('%order_id', $order_id, $message);
+      }
+    }
+    $courier_message = variable_get('sms_msg_for_courier', '');
+    if (!empty($courier_message)) {
+      if (!empty($node->field_order_id)) {
+        $order_id = $node->field_order_id['und'][0]['value'];
+        $courier_message = str_replace('%order_id', $order_id, $courier_message);
+      }
+    }
+
+    // send sms_message
+    $sender_id = variable_get('smsmsg91_senderID');
+    $route = variable_get('smsmsg91_route');
+
+    if (!empty($message) && !empty($user_mobile_number)) {
+      sms_configuration_send_message($user_mobile_number, $message, $sender_id, $route);
+    }
+    if (!empty($courier_message) && !empty($courier_mobile_number)) {
+      sms_configuration_send_message($courier_mobile_number, $courier_message, $sender_id, $route);
+    }
+  // }
+}
