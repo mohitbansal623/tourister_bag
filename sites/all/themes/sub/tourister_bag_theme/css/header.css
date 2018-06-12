@@ -100,15 +100,17 @@ header#navbar.navbar.container .navbar-collapse ul.navbar-nav a.active {
 header#navbar.navbar.container .navbar-collapse ul.navbar-nav a:hover {
   color: #f38c58;
 }
-/* line 67, ../sass/header.scss */
-header#navbar.navbar.container .navbar-collapse ul.dropdown-menu a {
-  color: #111;
+@media screen and (min-width: 768px) {
+  /* line 67, ../sass/header.scss */
+  header#navbar.navbar.container .navbar-collapse ul.dropdown-menu a {
+    color: #111;
+  }
 }
-/* line 70, ../sass/header.scss */
+/* line 72, ../sass/header.scss */
 header#navbar.navbar.container .navbar-collapse ul.dropdown-menu.active {
   color: #fff;
 }
-/* line 73, ../sass/header.scss */
+/* line 75, ../sass/header.scss */
 header#navbar.navbar.container .navbar-collapse ul.dropdown-menu:hover {
   color: #fff;
 }

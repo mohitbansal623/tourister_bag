@@ -65,7 +65,9 @@ header#navbar.navbar.container {
 
     ul.dropdown-menu {
       a {
-        color: #111;
+        @media screen and (min-width: 768px) {
+          color: #111;
+        }
       }
       &.active {
         color: #fff;
