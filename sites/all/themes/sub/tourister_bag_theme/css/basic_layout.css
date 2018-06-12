@@ -222,3 +222,46 @@ body.front .page-container .main-container.container #block-views-view-banner-bl
 .node-type-webform .node-webform header {
   display: none;
 }
+
+/* line 181, ../sass/basic_layout.scss */
+.page-node-add-upload-cash-slip .page-node-add-upload-cash-slip-bank .field-name-field-order-id, .page-node-add-upload-cheque .page-node-add-upload-cash-slip-bank .field-name-field-order-id, .page-node-add-upload-neft-slip .page-node-add-upload-cash-slip-bank .field-name-field-order-id {
+  display: none;
+}
+
+/* line 188, ../sass/basic_layout.scss */
+.page-user-orders .breadcrumb {
+  display: none;
+}
+/* line 192, ../sass/basic_layout.scss */
+.page-user-orders .page-header {
+  display: none;
+}
+/* line 197, ../sass/basic_layout.scss */
+.page-user-orders .view-commerce-line-item-table.view-id-commerce_line_item_table .view-header {
+  margin-bottom: 30px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.07);
+  padding: 10px;
+}
+/* line 202, ../sass/basic_layout.scss */
+.page-user-orders .view-commerce-line-item-table.view-id-commerce_line_item_table .view-header .company-details {
+  text-align: center;
+}
+/* line 204, ../sass/basic_layout.scss */
+.page-user-orders .view-commerce-line-item-table.view-id-commerce_line_item_table .view-header .company-details .company-title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+/* line 210, ../sass/basic_layout.scss */
+.page-user-orders .view-commerce-line-item-table.view-id-commerce_line_item_table .view-header .user-details {
+  display: inline-block;
+  width: 50%;
+}
+/* line 214, ../sass/basic_layout.scss */
+.page-user-orders .view-commerce-line-item-table.view-id-commerce_line_item_table .view-header .user-details .user-name {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+/* line 220, ../sass/basic_layout.scss */
+.page-user-orders .view-commerce-line-item-table.view-id-commerce_line_item_table .view-header .order-date-time {
+  display: inline-block;
+}

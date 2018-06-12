@@ -1,8 +1,6 @@
 /* line 3, ../sass/display_products.scss */
 .node-type-bags .node-bags .field-name-field-image {
   float: left;
-  width: 50%;
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.07);
 }
 @media screen and (max-width: 480px) {
   /* line 3, ../sass/display_products.scss */
@@ -14,7 +12,7 @@
 /* line 14, ../sass/display_products.scss */
 .node-type-bags .node-bags .field-name-commerce-price {
   display: inline-block;
-  padding-top: 50px;
+  padding-top: 30px;
   padding-left: 50px;
   width: 50%;
 }
@@ -45,72 +43,78 @@
   }
 }
 /* line 41, ../sass/display_products.scss */
-.node-type-bags .node-bags .field-name-field-color {
+.node-type-bags .node-bags .field-name-field-color, .node-type-bags .node-bags .field-name-field-hsn-number, .node-type-bags .node-bags .field-name-commerce-stock, .node-type-bags .node-bags .field-name-body {
   display: inline-block;
   padding-top: 20px;
   padding-left: 50px;
   width: 50%;
 }
-/* line 47, ../sass/display_products.scss */
-.node-type-bags .node-bags .field-name-field-color .field-label {
+@media screen and (max-width: 480px) {
+  /* line 41, ../sass/display_products.scss */
+  .node-type-bags .node-bags .field-name-field-color, .node-type-bags .node-bags .field-name-field-hsn-number, .node-type-bags .node-bags .field-name-commerce-stock, .node-type-bags .node-bags .field-name-body {
+    width: 100%;
+  }
+}
+/* line 51, ../sass/display_products.scss */
+.node-type-bags .node-bags .field-name-field-color .field-label, .node-type-bags .node-bags .field-name-field-hsn-number .field-label, .node-type-bags .node-bags .field-name-commerce-stock .field-label, .node-type-bags .node-bags .field-name-body .field-label {
   font-size: 20px;
 }
 @media screen and (max-width: 480px) {
-  /* line 47, ../sass/display_products.scss */
-  .node-type-bags .node-bags .field-name-field-color .field-label {
+  /* line 51, ../sass/display_products.scss */
+  .node-type-bags .node-bags .field-name-field-color .field-label, .node-type-bags .node-bags .field-name-field-hsn-number .field-label, .node-type-bags .node-bags .field-name-commerce-stock .field-label, .node-type-bags .node-bags .field-name-body .field-label {
     font-size: 18px;
   }
 }
-/* line 55, ../sass/display_products.scss */
-.node-type-bags .node-bags .field-name-field-color .field-items {
+/* line 59, ../sass/display_products.scss */
+.node-type-bags .node-bags .field-name-field-color .field-items, .node-type-bags .node-bags .field-name-field-hsn-number .field-items, .node-type-bags .node-bags .field-name-commerce-stock .field-items, .node-type-bags .node-bags .field-name-body .field-items {
   font-size: 18px;
 }
 @media screen and (max-width: 480px) {
-  /* line 55, ../sass/display_products.scss */
-  .node-type-bags .node-bags .field-name-field-color .field-items {
+  /* line 59, ../sass/display_products.scss */
+  .node-type-bags .node-bags .field-name-field-color .field-items, .node-type-bags .node-bags .field-name-field-hsn-number .field-items, .node-type-bags .node-bags .field-name-commerce-stock .field-items, .node-type-bags .node-bags .field-name-body .field-items {
     font-size: 16px;
   }
 }
-/* line 64, ../sass/display_products.scss */
+/* line 68, ../sass/display_products.scss */
 .node-type-bags .node-bags .field-name-field-bags-reference {
   display: inline-block;
   width: 50%;
   padding-left: 50px;
 }
 
-/* line 75, ../sass/display_products.scss */
+/* line 79, ../sass/display_products.scss */
 body.page-bags .main-container h1.page-header {
   border-bottom: none;
   margin-top: 20px;
   font-weight: bold;
   text-align: center;
 }
-/* line 83, ../sass/display_products.scss */
+/* line 87, ../sass/display_products.scss */
 body.page-bags .view-bags.view-id-bags .view-filters {
   margin-bottom: 40px;
 }
-/* line 87, ../sass/display_products.scss */
+/* line 91, ../sass/display_products.scss */
 body.page-bags .view-bags.view-id-bags .view-content .views-field-field-image {
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.07);
 }
-/* line 89, ../sass/display_products.scss */
+/* line 93, ../sass/display_products.scss */
 body.page-bags .view-bags.view-id-bags .view-content .views-field-field-image a {
   padding: 10px;
 }
-/* line 93, ../sass/display_products.scss */
+/* line 97, ../sass/display_products.scss */
 body.page-bags .view-bags.view-id-bags .view-content .views-field-title {
   margin-top: 10px;
 }
-/* line 96, ../sass/display_products.scss */
+/* line 100, ../sass/display_products.scss */
 body.page-bags .view-bags.view-id-bags .view-content .views-field {
   text-align: center;
 }
-/* line 98, ../sass/display_products.scss */
+/* line 102, ../sass/display_products.scss */
 body.page-bags .view-bags.view-id-bags .view-content .views-field:last-child {
   margin-bottom: 5px;
 }
 
-/* line 108, ../sass/display_products.scss */
+/* line 112, ../sass/display_products.scss */
 .page-cart .commerce-line-item-actions #edit-submit {
   display: none;
 }

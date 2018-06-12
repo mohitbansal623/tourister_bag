@@ -175,3 +175,51 @@ body.front {
     display: none;
   }
 }
+
+.page-node-add-upload-cash-slip, .page-node-add-upload-cheque, .page-node-add-upload-neft-slip {
+  .page-node-add-upload-cash-slip-bank {
+    .field-name-field-order-id {
+      display: none;
+    }
+  }
+}
+
+.page-user-orders {
+  .breadcrumb {
+    display: none;
+  }
+
+  .page-header {
+    display: none;
+  }
+
+  .view-commerce-line-item-table.view-id-commerce_line_item_table {
+    .view-header {
+      margin-bottom: 30px;
+      box-shadow: 0 3px 9px rgba(0,0,0,0.07);
+      padding: 10px;
+
+      .company-details {
+        text-align: center;
+        .company-title {
+          text-transform: uppercase;
+          font-weight: bold;
+        }
+      }
+
+      .user-details {
+        display: inline-block;
+        width: 50%;
+
+        .user-name {
+          text-transform: uppercase;
+          font-weight: bold;
+        }
+      }
+
+      .order-date-time {
+        display: inline-block;
+      }
+    }
+  }
+}
