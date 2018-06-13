@@ -115,6 +115,32 @@ body.page-bags .view-bags.view-id-bags .view-content .views-field:last-child {
 }
 
 /* line 112, ../sass/display_products.scss */
-.page-cart .commerce-line-item-actions #edit-submit {
+body.page-cart .commerce-line-item-actions #edit-submit {
   display: none;
+}
+/* line 126, ../sass/display_products.scss */
+body.page-cart .view-commerce-cart-form .view-content .views-table tbody tr.view-bags td.views-field-commerce-unit-price .commerce-price-formatted-components tr td {
+  padding: 3px;
+  border-top: none;
+  line-height: 1;
+}
+/* line 134, ../sass/display_products.scss */
+body.page-cart .view-commerce-cart-form .view-content .views-table tbody tr.view-bags td.views-field {
+  padding: 4px 8px 0px 8px;
+}
+/* line 136, ../sass/display_products.scss */
+body.page-cart .view-commerce-cart-form .view-content .views-table tbody tr.view-bags td.views-field .form-item input.form-control {
+  height: 28px;
+}
+/* line 139, ../sass/display_products.scss */
+body.page-cart .view-commerce-cart-form .view-content .views-table tbody tr.view-bags td.views-field .delete-line-item.btn {
+  padding: 2px 8px;
+}
+/* line 141, ../sass/display_products.scss */
+body.page-cart .view-commerce-cart-form .view-content .views-table tbody tr.view-bags td.views-field .delete-line-item.btn .glyphicon {
+  top: 2px;
+}
+/* line 149, ../sass/display_products.scss */
+body.page-cart .view-commerce-cart-form .view-content .views-table tbody tr.view-bags.even .views-field-commerce-unit-price .commerce-price-formatted-components tr:first-child {
+  background: none;
 }

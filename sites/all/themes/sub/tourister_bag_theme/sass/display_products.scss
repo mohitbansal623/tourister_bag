@@ -107,10 +107,54 @@ body.page-bags {
   }
 }
 
-.page-cart {
+body.page-cart {
   .commerce-line-item-actions {
     #edit-submit {
       display: none;
+    }
+  }
+
+  .view-commerce-cart-form {
+    .view-content {
+      .views-table {
+        tbody {
+          tr.view-bags {
+            // price
+            td.views-field-commerce-unit-price {
+              .commerce-price-formatted-components {
+                tr {
+                  td {
+                    padding: 3px;
+                    border-top: none;
+                    line-height: 1;
+                  }
+                }
+              }
+            }
+            td.views-field {
+              padding: 4px 8px 0px 8px;
+              .form-item input.form-control {
+                height: 28px;
+              }
+              .delete-line-item.btn {
+                padding: 2px 8px;
+                .glyphicon {
+                  top: 2px;
+                }
+              }
+            }
+            &.even {
+              .views-field-commerce-unit-price {
+                .commerce-price-formatted-components {
+                  tr:first-child {
+                    background: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
