@@ -35,7 +35,7 @@ function sms_configuration_menu() {
     'file' => 'sms_configuration.admin.inc',
   );
 
-  $items['admin/config/sms/messages'] = array(
+  $items['sms/messages'] = array(
     'title' => 'SMS Messages',
     'description' => 'Different message for different forms',
     'page callback' => 'drupal_get_form',
