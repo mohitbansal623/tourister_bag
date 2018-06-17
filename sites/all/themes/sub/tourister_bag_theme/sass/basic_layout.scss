@@ -188,11 +188,9 @@ body.front {
   .breadcrumb {
     display: none;
   }
-
   .page-header {
     display: none;
   }
-
   .view-commerce-line-item-table.view-id-commerce_line_item_table {
     .view-header {
       margin-bottom: 30px;
@@ -201,6 +199,7 @@ body.front {
 
       .company-details {
         text-align: center;
+        margin-bottom: 20px;
         .company-title {
           text-transform: uppercase;
           font-weight: bold;
@@ -211,26 +210,33 @@ body.front {
         }
       }
 
-      .user-details {
+      .user-details, .bank-details, .order-date-time {
         display: inline-block;
-        width: 50%;
+        width: 33%;
+        vertical-align: top;
+        @media screen and (max-width: 640px){
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
 
         .user-name {
           text-transform: uppercase;
           font-weight: bold;
         }
       }
+      .bank-details {
+        h5{
+          font-weight: bold;
+          font-size: 18px;
+        }
+      }
 
       .order-date-time {
-        display: inline-block;
-
         h4 {
-          display: inline-block;
+          font-weight: bold;
         }
-
         p {
-          display: inline-block;
-          margin-left: 15px;
           font-size: 16px;
         }
       }
