@@ -205,6 +205,10 @@ body.front {
           text-transform: uppercase;
           font-weight: bold;
         }
+        .company-address, .company-email, .company-website, .company-number {
+          display: inline-block;
+          margin-left: 12px;
+        }
       }
 
       .user-details {
@@ -219,6 +223,16 @@ body.front {
 
       .order-date-time {
         display: inline-block;
+
+        h4 {
+          display: inline-block;
+        }
+
+        p {
+          display: inline-block;
+          margin-left: 15px;
+          font-size: 16px;
+        }
       }
     }
   }
