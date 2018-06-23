@@ -128,8 +128,8 @@
 /* line 87, ../sass/footer.scss */
 .site-footer .footer .footer-distributed .footer-right .footer-company-about {
   line-height: 20px;
-  color: #92999f;
-  font-size: 13px;
+  color: white;
+  font-size: 15px;
   font-weight: normal;
   margin: 0;
 }
@@ -141,14 +141,20 @@
   font-weight: bold;
 }
 /* line 100, ../sass/footer.scss */
+.site-footer .footer .footer-distributed .footer-right .footer-company-about a {
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+/* line 106, ../sass/footer.scss */
 .site-footer .footer .footer-distributed .footer-right .footer-icons {
   margin-top: 25px;
 }
-/* line 102, ../sass/footer.scss */
+/* line 108, ../sass/footer.scss */
 .site-footer .footer .footer-distributed .footer-right .footer-icons p {
   display: inline-block;
 }
-/* line 105, ../sass/footer.scss */
+/* line 111, ../sass/footer.scss */
 .site-footer .footer .footer-distributed .footer-right .footer-icons a {
   display: inline-block;
   width: 35px;
@@ -164,48 +170,48 @@
   margin-bottom: 5px;
 }
 @media screen and (max-width: 1024px) {
-  /* line 124, ../sass/footer.scss */
+  /* line 130, ../sass/footer.scss */
   .site-footer .footer-left {
     width: 23% !important;
   }
 }
 @media screen and (max-width: 991px) {
-  /* line 129, ../sass/footer.scss */
+  /* line 135, ../sass/footer.scss */
   .site-footer .footer.container {
     width: auto !important;
   }
 }
 @media screen and (max-width: 880px) {
-  /* line 134, ../sass/footer.scss */
+  /* line 140, ../sass/footer.scss */
   .site-footer .footer-left, .site-footer .footer-center, .site-footer .footer-right {
     display: block !important;
     width: 100% !important;
     margin-bottom: 20px;
     text-align: center;
   }
-  /* line 141, ../sass/footer.scss */
+  /* line 147, ../sass/footer.scss */
   .site-footer .footer-center div:last-child {
     margin-left: 60px;
   }
 }
 @media screen and (max-width: 375px) {
-  /* line 149, ../sass/footer.scss */
+  /* line 155, ../sass/footer.scss */
   .site-footer .footer-center div:last-child {
     margin-left: 14px;
   }
-  /* line 152, ../sass/footer.scss */
+  /* line 158, ../sass/footer.scss */
   .site-footer .footer-center div:nth-child(2) {
     margin-left: -36px;
   }
-  /* line 154, ../sass/footer.scss */
+  /* line 160, ../sass/footer.scss */
   .site-footer .footer-center div:nth-child(2) p {
     margin-left: 4px !important;
   }
-  /* line 158, ../sass/footer.scss */
+  /* line 164, ../sass/footer.scss */
   .site-footer .footer-center i {
     margin: 10px 4px !important;
   }
-  /* line 161, ../sass/footer.scss */
+  /* line 167, ../sass/footer.scss */
   .site-footer .footer-center p {
     font-size: 12px;
   }
