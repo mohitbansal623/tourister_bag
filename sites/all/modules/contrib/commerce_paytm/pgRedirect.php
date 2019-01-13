@@ -16,14 +16,16 @@ $CHANNEL_ID = $_POST["CHANNEL_ID"];
 $TXN_AMOUNT = $_POST["TXN_AMOUNT"];
 
 // Create an array having all required parameters for creating checksum.
-$paramList["MID"] = PAYTM_MERCHANT_MID;
+$paramList["MID"] = 'Shripr58879255116694';
 $paramList["ORDER_ID"] = $ORDER_ID;
 $paramList["CUST_ID"] = $CUST_ID;
-$paramList["INDUSTRY_TYPE_ID"] = $INDUSTRY_TYPE_ID;
+$paramList["INDUSTRY_TYPE_ID"] = 'Retail109';
 $paramList["CHANNEL_ID"] = $CHANNEL_ID;
 $paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
-$paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
-$paramList["CALLBACK_URL"] = "http://jnbag.local/sites/all/modules/contrib/commerce_paytm/pgResponse.php";
+$paramList["WEBSITE"] = 'WEBPROD';
+$paramList["CALLBACK_URL"] = "https://jnbag.in/sites/all/modules/contrib/commerce_paytm/pgResponse.php";
+
+$paytm_url = 'https://securegw.paytm.in/theia/processTransaction';
 //$paramList["MERC_UNQ_REF"] =  $TXN_AMOUNT . '_' .$CUST_ID;//to add custid in response
 /*
 $paramList["CALLBACK_URL"] = "http://localhost/PaytmKit/pgResponse.php";
@@ -34,9 +36,10 @@ $paramList["VERIFIED_BY"] = "EMAL"; //
 $paramList["IS_USER_VERIFIED"] = "YES"; //
 
 */
+print_r($paramList);
 
 //Here checksum string will return by getChecksumFromArray() function.
-$checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
+$checkSum = getChecksumFromArray($paramList,'iACOFx1tmEEcd7KN');
 
 ?>
 <html>
@@ -45,7 +48,7 @@ $checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
 </head>
 <body>
 	<center><h1>Please do not refresh this page...</h1></center>
-		<form method="post" action="<?php echo PAYTM_TXN_URL ?>" name="f1">
+		<form method="post" action="<?php echo $paytm_url; ?>" name="f1">
 		<table border="1">
 			<tbody>
 			<?php

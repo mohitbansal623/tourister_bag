@@ -1,0 +1,236 @@
+<?php
+/**
+ * @file
+ * Instamojo payment gateway integration with Drupal Commerce.
+ */
+/**
+ * Implements hook_permission().
+ */
+
+require_once(drupal_get_path('module', 'commerce_instamojo') . '/includes/instamojo-api.inc.php');
+
+
+function commerce_instamojo_permission() {
+  return array(
+    'access commerce_instamojo page' => array(
+    'title' => t('Access page'),
+    'description' => t('Allow users to access page'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function commerce_instamojo_menu() {
+
+  $items['send_response_page'] = array(
+    'page callback' => 'page_send_response_data',
+    'access arguments' => array('access commerce_instamojo page'),
+    'file' => 'includes/send_response.inc',
+  );
+  $items['response_page'] = array(
+    'page callback' => 'page_response_data',
+    'access arguments' => array('access commerce_instamojo page'),
+  );
+  return $items;
+}
+
+/**
+ * Payment method callback: settings form.
+ */
+function instamojo_settings_form($settings = NULL){
+
+  $form = array();
+
+  $settings = (array) $settings + array(
+    'api_key' => '',
+    'auth_token' => '',
+    'private_salt' => '',
+    'payment_link' => '',
+    'custom_field' => ''
+  );
+  $form['api_key'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Api Key'),
+    '#default_value' => $settings['api_key'],
+    '#required' => TRUE,
+  );
+  $form['auth_token'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Auth Token'),
+    '#default_value' => $settings['auth_token'],
+    '#required' => TRUE,
+  );
+    $form['private_salt'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Private Salt'),
+    '#default_value' => $settings['private_salt'],
+    '#required' => TRUE,
+  );
+  $form['payment_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Payment Link'),
+    '#default_value' => $settings['payment_link'],
+    '#required' => TRUE,
+  );
+  $form['custom_field'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Custom Field'),
+    '#default_value' => $settings['custom_field'],
+    '#required' => TRUE,
+  );
+  return $form;
+}
+/**
+ * Implements hook_commerce_payment_method_info().
+ */
+function commerce_instamojo_commerce_payment_method_info() {
+  $payment_methods = array();
+  $payment_methods['instamojo'] = array(
+    'base' => 'instamojo',
+    'title' => t("Instamojo Payment Gateway"),
+    'display_title' => "Instamojo Payment Gateway",
+    'short_title' => 'Instamojo Payment Gateway',
+    'description' => t("Payment method - Commerce Instamojo Payment Gateway"),
+    'terminal' => TRUE,
+    'offsite' => TRUE,
+    'offsite_autoredirect' => TRUE,
+  );
+  return $payment_methods;
+}
+/**
+ * Payment method callback: redirect form.
+ */
+function instamojo_redirect_form($form, &$form_state, $order, $payment_method) {
+
+  global $base_url;
+
+  $settings = $payment_method['settings']; 
+  $api_key = $settings['api_key'];
+  $auth_token = $settings['auth_token'];
+  $private_salt = $settings['private_salt'];
+  $payment_link = $settings['payment_link'];
+  $custom_field = $settings['custom_field'];
+  variable_set('api_key', $api_key);
+  variable_set('auth_token', $auth_token);
+  variable_set('custom_field', $custom_field);
+  $order_id = $order->order_id;
+  variable_set('order_id', $order_id);
+  variable_set('api_key', $api_key);
+  variable_set('auth_token', $auth_token);
+
+  $profile_id  = $order->commerce_customer_billing['und'][0]['profile_id'];
+  $profile = commerce_customer_profile_load($profile_id);
+
+  $full_name = trim(substr($profile->commerce_customer_address['und'][0]['first_name'] . ' '. $profile->commerce_customer_address['und'][0]['last_name'], 0, 20));
+  $email = substr($order->mail, 0, 75);
+  $phone = substr($profile->field_phone_no['und'][0]['value'], 0, 20);
+
+  $data = Array();
+  $data['data_email']  = $email;
+  $data['data_phone']  = $phone;
+  $data['data_name']   =  $full_name;
+  $data['data_amount'] = $order->commerce_order_total['und'][0]['amount'] / 100;
+  $data['data_' . $custom_field] = $order_id . '-' .Date('his');
+
+  $ver = explode('.', phpversion());
+  $major = (int) $ver[0];
+  $minor = (int) $ver[1];
+  if($major >= 5 and $minor >= 4){
+       ksort($data, SORT_STRING | SORT_FLAG_CASE);
+  }
+  else{
+       uksort($data, 'strcasecmp');
+  }
+
+  $message = implode('|', $data);
+  $sign = hash_hmac("sha1", $message, $private_salt);
+  $data['data_sign'] = $sign;
+  $data['payment_link'] = $payment_link;
+
+  foreach($data as $key => $value){
+
+      $form[$key] = array('#type' => 'hidden', '#value' => $value);
+
+  }
+
+  $link = $base_url . '/send_response_page';
+  $form['#action'] = $link;
+  $form['#method'] = 'POST';
+  return $form;
+}
+
+/**
+ * function handle response from gateway .
+ */
+
+function page_response_data(){
+
+  global $base_url;
+  $payment_id = $_GET['payment_id'];
+  $api_key = variable_get('api_key');
+  $auth_token = variable_get('auth_token');
+  $custom_field = variable_get('custom_field');
+
+  $api = new InstamojoAPI($api_key, $auth_token, 'https://www.instamojo.com/api/1.1/');
+
+  $all_fine = TRUE;
+  try {
+      $response = $api->paymentDetail($payment_id);
+      $order_info = explode('-', $response['custom_fields'][$custom_field]['value']);
+      $order_id = $order_info[0];
+      $amount = $response['amount'] * 100;
+      $status = $response['status'];
+      if($status != "Credit"){
+        $all_fine = FALSE;
+      }
+  }
+  catch (Exception $e) {
+       $all_fine = FALSE;
+  }
+
+  
+  if ($all_fine === TRUE && isset($order_id)) {
+
+    $commerce_order = commerce_order_load($order_id);
+    $wrapper = entity_metadata_wrapper('commerce_order', $commerce_order);
+    $currency = $wrapper->commerce_order_total->currency_code->value();
+    $name = 'checkout_complete';
+    $order_success = commerce_order_status_update($commerce_order, $name, $skip_save = FALSE, $revision = TRUE, $log = '');
+    commerce_checkout_complete($order_success);
+    $wrapper = entity_metadata_wrapper('commerce_order', $commerce_order);
+    $currency = $wrapper->commerce_order_total->currency_code->value();
+    $transaction = commerce_payment_transaction_new('instamojo', $order_id);
+    $transaction->amount = $amount;
+    $transaction->message = $status;
+    $transaction->currency_code = $currency;
+    $transaction->status = COMMERCE_PAYMENT_STATUS_SUCCESS;
+
+    // http://drupal.stackexchange.com/a/90889
+
+    rules_invoke_all('commerce_payment_order_paid_in_full', $commerce_order, $transaction);
+    // Update the order's data array to indicate this just happened.
+    $commerce_order->data['commerce_payment_order_paid_in_full_invoked'] = TRUE;
+    commerce_order_save($commerce_order);
+    // Note: Some user defined rules can still override this
+  
+    commerce_payment_transaction_save($transaction);
+    commerce_payment_redirect_pane_next_page($order_success);
+    drupal_goto( $base_url . '/checkout/' . $order_id . '/complete');
+  }
+  else if($all_fine === FALSE && isset($order_id)){
+    $commerce_order = commerce_order_load($order_id);
+    $name = 'checkout_review';
+    $order_failure = commerce_order_status_update($commerce_order, $name, $skip_save = FALSE, $revision = TRUE, $log = '');
+    $transaction = commerce_payment_transaction_new('instamojo', $order_id);
+    $transaction->message = $status;
+    $transaction->status = COMMERCE_PAYMENT_STATUS_FAILURE;
+    commerce_payment_transaction_save($transaction);
+    commerce_payment_redirect_pane_previous_page($order_failure);
+    drupal_goto( $base_url . '/checkout/' . $order_id . '/review');
+  }
+  else{
+    drupal_goto($base_url);
+  }
+}

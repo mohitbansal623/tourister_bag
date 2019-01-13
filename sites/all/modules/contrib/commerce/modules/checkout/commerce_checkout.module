@@ -966,7 +966,33 @@ function commerce_checkout_complete($order) {
   if (empty($order->placed)) {
     $order->placed = REQUEST_TIME;
   }
+  
+  // Send SMS for whom the order is made.
+  /*
+  $uid = $order->uid;
+  $amount  = $order->commerce_order_total['und'][0]['amount'] / 100;
+  
+  $order_mobile_number = isset($order->commerce_customer_billing['und'][0]['profile_id']) ? $order->commerce_customer_billing['und'][0]['profile_id']: NULL;
+  
+  if (!empty($order_mobile_number)) {
+  $mobile_number = db_query('Select field_phone_no_value from field_data_field_phone_no where entity_id = ' .$order_mobile_number)->fetchField();
+  }
+  else {
+    $userin = user_load($uid);
+    $mobile_number = $userin->field_contact_number['und'][0]['value'];
+  }
+  
+  $message = "Thank you for placing order at JNBAG. Your invoice number is " . $order->order_id . " and the total amount is Rs. " . $amount . ".";
+  
+  if ($uid == 1) {
+      $message .= " Order is made from the Office.";
+  }
+  
+  $sender_id = variable_get('smsmsg91_senderID');
+  $route = variable_get('smsmsg91_route');
 
+  sms_configuration_send_message($mobile_number, $message, $sender_id, $route);
+  */
   rules_invoke_all('commerce_checkout_complete', $order);
 }
 

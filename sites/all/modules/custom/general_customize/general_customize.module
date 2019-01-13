@@ -9,27 +9,54 @@ function general_customize_init() {
   $pattern1 = 'cash-slip/*';
   $pattern2 = 'cash-slip-bank/*';
   $pattern3 = 'neft/*';
+  
+  if ($path == 'bags') {
+      if (!user_is_logged_in()) {
+         drupal_goto('bags-info');
+      }
+      
+  }
 
   if (drupal_match_path($path, $pattern) || drupal_match_path($path, $pattern1) || drupal_match_path($path, $pattern2) || drupal_match_path($path, $pattern3)) {
-    if (isset($_SESSION['order-id'])) {
-      $order = commerce_order_load($_SESSION['order-id']);
+    if (isset($_COOKIE['orderid'])) {
+      $order = commerce_order_load($_COOKIE['orderid']);
       commerce_checkout_complete($order);
 
-      drupal_goto('checkout/' . $_SESSION['order-id'] .'/complete');
+      drupal_goto('checkout/' . $_COOKIE['orderid'] .'/complete');
     }
   }
 
   $patterns = 'checkout/*/complete';
   if (drupal_match_path($path, $patterns)) {
-    unset($_SESSION['order-id']);
+    unset($_COOKIE['orderid']);
   }
+  
+  $pattern5 = 'narration/*';
+  if (drupal_match_path($path, $pattern5)) {
+    drupal_goto('checkout/' . $_COOKIE['orderid'] .'/review');
+  }
+  
 
 }
 /**
  * Implements form alter.
  */
 function general_customize_form_alter(&$form, &$form_state, $form_id) {
-  unset($form['account']['roles']['#options'][3]);
+    global $user;
+    $uid = $user->uid;
+    if ($form_id == 'commerce_checkout_form_checkout') {
+        if(!in_array('admin', $user->roles)) {
+        $form['customer_profile_billing']['field_gstin_number']['#access'] = FALSE;
+     //   $form['customer_profile_billing']['field_select_bill_date']['#access'] = FALSE;
+        }
+
+    }
+  elseif ($form_id == 'user_register_form') { 
+      $uid = $user->uid;
+      if($uid != 1) {
+        unset($form['account']['roles']['#options'][3]);
+      }
+  }
   if ($form_id == 'marketing_details_node_form' || $form_id == 'record_money_transfer_node_form' || $form_id == 'agent_expenses_record_node_form' || $form_id == 'bags_node_form') {
     $form['actions']['submit']['#value'] = 'Save ( सुरक्षित करे)';
     $form['actions']['preview']['#value'] = 'Preview ( एक बार देख ले)';
@@ -40,18 +67,62 @@ function general_customize_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
+  
+  if ($form_id == 'marketing_details_node_form') {
+      $form['#validate'][] = 'check_mobile_number';
+   }
+   
+  /*elseif($form_id == 'narration_node_form') {
+      $param = drupal_get_query_parameters();
+      if (!empty($param) && isset($param['order_id'])) {
+          $order_id = $param['order_id'];
+          if (is_numeric($order_id)) {
+            $form['field_order_id']['und'][0]['value']['#default_value'] = $order_id;
+            $form['field_order_id']['#access'] = FALSE;
+          }
+      }
+      
+  }*/ 
+  
 
   elseif ($form_id == 'commerce_checkout_form_review') {
-      $_SESSION['order-id'] = is_numeric(arg(1))? arg(1) : $_SESSION['order-id'];
+     // $_SESSION['order-id'] = is_numeric(arg(1))? arg(1) : $_SESSION['order-id'];
       // $form['buttons']['continue']['#submit'][] = array_unshift($form['buttons']['continue']['#submit'], "check_value_payment");
   }
 
-  elseif ($form_id == 'upload_cheque_node_form' || $form_id == 'upload_cash_slip_node_form' || $form_id == 'upload_cash_slip_bank_node_form' || $form_id == 'upload_neft_slip_node_form') {
-    if (isset($_SESSION['order-id'])) {
-      $form['field_order_id']['und'][0]['value']['#default_value'] = $_SESSION['order-id'];
+  elseif ($form_id == 'upload_cheque_node_form' || $form_id == 'upload_cash_slip_node_form' || $form_id == 'upload_cash_slip_bank_node_form' || $form_id == 'upload_neft_slip_node_form' || $form_id == 'narration_node_form') {
+    if (isset($_COOKIE['orderid'])) {
+      $form['field_order_id']['und'][0]['value']['#default_value'] = $_COOKIE['orderid'];
       $form['field_order_id']['#access'] = FALSE;
     }
   }
+}
+
+function check_mobile_number($form, &$form_state) {
+    /*
+    if (strlen($form_state['values']['field_owner_contact_number']['und'][0]['value']) < 10 || strlen($form_state['values']['field_owner_contact_number']['und'][0]['value']) > 10) {
+      form_set_error('field_add_amount', 'Mobile Number must be must be of 10 digits.');
+    }
+    
+    if (strlen($form_state['values']['field_alternative_contact_number']['und'][0]['value']) < 10 || strlen($form_state['values']['field_alternative_contact_number']['und'][0]['value']) > 10) {
+      form_set_error('field_add_amount', 'Mobile Number must be must be of 10 digits.');
+    }
+    
+    if (strlen($form_state['values']['field_whatsapp_number']['und'][0]['value']) < 10 || strlen($form_state['values']['field_whatsapp_number']['und'][0]['value']) > 10) {
+      form_set_error('field_add_amount', 'Mobile Number must be must be of 10 digits.');
+    }
+    
+    if (strlen($form_state['values']['field_account_dept_contact_no_']['und'][0]['value']) < 10 || strlen($form_state['values']['field_account_dept_contact_no_']['und'][0]['value']) > 10) {
+      form_set_error('field_add_amount', 'Mobile Number must be must be of 10 digits.');
+    }
+    
+    if (strlen($form_state['values']['field_purchase_dept_contact_no_']['und'][0]['value']) < 10 || strlen($form_state['values']['field_purchase_dept_contact_no_']['und'][0]['value']) > 10) {
+      form_set_error('field_add_amount', 'Mobile Number must be must be of 10 digits.');
+    }
+    
+    if (strlen($form_state['values']['field_stores_dept_contact_no_']['und'][0]['value']) < 10 || strlen($form_state['values']['field_stores_dept_contact_no_']['und'][0]['value']) > 10) {
+      form_set_error('field_add_amount', 'Mobile Number must be must be of 10 digits.');
+    }*/
 }
 
 // function check_value_payment(&$form, &$form_state) {
@@ -89,3 +160,4 @@ function check_login() {
 
   return $output;
 }
+

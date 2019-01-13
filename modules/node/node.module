@@ -1332,6 +1332,9 @@ function node_view($node, $view_mode = 'full', $langcode = NULL) {
     $langcode = $GLOBALS['language_content']->language;
   }
 
+  // Load Node with Revision ID set in Node Table.
+  $node = node_load($node->nid, $node->vid);
+
   // Populate $node->content with a render() array.
   node_build_content($node, $view_mode, $langcode);
 
@@ -1458,6 +1461,80 @@ function node_build_content($node, $view_mode = 'full', $langcode = NULL) {
  *   A $page element suitable for use by drupal_render().
  */
 function node_show($node, $message = FALSE) {
+
+
+  if (isset($node->vid) && ($node->type == 'products')) {
+    $vid = db_query("Select revision_id from snu_university.field_revision_field_workflow_status where entity_id = " . $node->nid . " and field_workflow_status_value = 2 ORDER by revision_id DESC limit 1")->fetchCol();
+
+    if (!empty($vid)) {
+      $vid = $vid[0];
+      $node_revision = node_load($node->nid, $vid);
+
+     //   // Update {node} and {node_revision} tables setting status and other flags.
+      db_update('node')
+        ->fields(array(
+          'vid' => $vid,
+          'title' => $node_revision->title,
+          'changed' => time(),
+          'status' => NODE_PUBLISHED,
+          'comment' => $node_revision->comment,
+          'promote' => $node_revision->promote,
+          'sticky' => $node_revision->sticky))
+        ->condition('nid', $node_revision->nid)
+        ->execute();
+
+      db_update('node_revision')
+        ->fields(array('status' => NODE_PUBLISHED))
+        ->condition('vid', $vid)
+        ->execute();
+
+  //  // Make sure the alias, if present, is not changed when publishing.
+      if (!isset($node_revision->path['pathauto'])) {
+        $node_revision->path = array(
+          // So that path_node_update() does nothing.
+          'alias' => '',
+          // So that pathauto_node_update() does nothing.
+          'pathauto' => FALSE,
+        );
+      }
+      elseif (!isset($node_revision->path['alias'])) {
+        // [#1328180], [#1576552]
+        $node_revision->path['alias'] = '';
+      }
+      // Make sure the menu, if present, is not changed when publishing [#1698024]
+      if (!isset($node_revision->menu)) {
+        $node_revision->menu = array(
+          'enabled' => '',
+          'mlid' => '',
+          'link_title' => '',
+          'link_path' => '',
+          'description' => '',
+        );
+      }
+      elseif (!isset($node_revision->menu)) {
+        $node_revision->menu = '';
+      }
+
+      $node_revision->original = clone $node_revision;
+      $node_revision->original->status = NODE_NOT_PUBLISHED;
+
+      module_invoke_all('node_update', $node_revision);
+      module_invoke_all('entity_update', $node_revision, 'node');
+
+  //     // Update node_access table only for existing nodes. When the node is newly
+  //     // created via the node/add page, node_access_acquire_grants() is called by
+  //     // node_save() anyway. See [#1243018].
+      if (empty($node_revision->is_new)) {
+        node_access_acquire_grants($node_revision);
+      }
+
+      if (TRUE) {
+        cache_clear_all();
+      }
+    }
+  }
+
+
   if ($message) {
     drupal_set_title(t('Revision of %title from %date', array('%title' => $node->title, '%date' => format_date($node->revision_timestamp))), PASS_THROUGH);
   }

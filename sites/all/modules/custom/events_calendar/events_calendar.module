@@ -1,0 +1,225 @@
+<?php
+
+/**
+ *  Implements hook_menu
+ */
+function events_calendar_menu() {
+  $items = array();
+
+  $items['campus-life/sports-events-calendar'] = array(
+    'title' => 'Sports Event Calendar',
+    'description' => 'Display all events month wise.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('display_events_data_form'),
+    'access callback' => TRUE,
+  );
+
+  $items['set-facility-content'] = array(
+    'title' => 'Set Facility Header Content',
+    'description' => 'Please Set Facility Header Content ',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('set_facility_content_form'),
+    'access arguments' => TRUE,
+  );
+
+  return $items;
+}
+
+function set_facility_content_form() {
+  $form['set_facility_content'] = array(
+    '#type' => 'textarea',
+    '#title' => 'Set Facility Content',
+    '#description' => '',
+    '#default_value' => variable_get('set_facility_content', ''),
+    '#size' => 256,
+    '#maxlength' => 256,
+    '#required' => TRUE,
+  );
+
+  return system_settings_form($form);
+}
+
+
+function display_events_data_form($form, &$form_state) {
+  $year = array(2017 => '2017',2018 => '2018', 2019 => '2019');
+
+  $form['year'] = array(
+    '#type' => 'select',
+    '#options' => $year,
+    '#required' => TRUE,
+    //'#default_value' => isset($markAnswer) ? $markAnswer : NULL,
+    //'#attributes' => array('class' => array('checked')),
+  );
+
+  $month = array(1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April', 5 => 'May', 6 => 'June', 7 => 'July', 8 => 'August',  9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December');
+
+  $form['month'] = array(
+    '#type' => 'select',
+    '#options' => $month,
+    '#required' => TRUE,
+    //'#default_value' => isset($markAnswer) ? $markAnswer : NULL,
+    //'#attributes' => array('class' => array('checked')),
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Search')
+  );
+
+
+  if (isset($_GET['date'])) {
+    $date = strtotime($_GET['date']);
+    $time = date('Y-m-d h:i:s', $date);
+  }
+
+  if (isset($form_state['values']['year']) && isset($form_state['values']['month'])) {
+    $year = $form_state['values']['year'];
+    $month = $form_state['values']['month'];
+
+    $date = $year . "-" . $month . "1";
+    $date = strtotime($date);
+    $time = date('Y-m-d h:i:s', $date);
+  }
+
+  $events_final_data = get_events_data_for_month_and_year($time);
+
+  $final_output  = theme('display_events_final_calendar', array('events_calendar' => $events_final_data));
+
+  $form['#suffix'] = $final_output;
+
+  return $form;
+}
+
+
+
+function display_events_data_form_submit($form, &$form_state) {
+  $form_state['rebuild'] = TRUE;
+}
+
+
+/**
+ * Retrieving all events data for the month and year passed.
+ */
+function get_events_data_for_month_and_year($year = NULL, $month = NULL) {
+  dpm($month);
+  dpm($year);
+  if (!empty($year) && !empty($month)) {
+
+
+    $last_day_of_month = cal_days_in_month(CAL_GREGORIAN,$month,$year);
+    $last_date_of_month = $year . "-" . $month . "-" . $last_day_of_month;
+  }
+
+  // Query to fetch events which are ongoing since the past date, current and future events for the current month and year.
+
+  $query = db_query("SELECT node.nid AS nid, node.title AS title, field_data_field_event_date.field_event_date_value AS start_date, field_data_field_event_venue.field_event_venue_value as venue, field_data_body.body_value AS description, field_data_field_event_date.field_event_date_value2 AS end_date
+    FROM
+    {node} node
+     JOIN {field_data_field_event_date} field_data_field_event_date ON node.nid = field_data_field_event_date.entity_id
+    JOIN {field_data_field_event_venue} field_data_field_event_venue ON node.nid = field_data_field_event_venue.entity_id
+    JOIN {field_data_body} field_data_body ON node.nid = field_data_body.entity_id
+    WHERE (( (node.status = '1') AND (node.type IN  ('events_calendar')) AND (DATE_FORMAT(field_data_field_event_date.field_event_date_value2, '%Y-%m') >= '2018-09') AND (DATE_FORMAT(field_data_field_event_date.field_event_date_value, '%Y-%m') <= '2018-09') ))
+    ORDER BY start_date ASC")->fetchAll();
+
+
+
+  dpm($query);
+  $output = array();
+
+  if (!empty($query)) {
+    foreach($query as $key => $value) {
+      $starting_month = date('m', strtotime($value->start_date));
+      $starting_month = ltrim($starting_month, '0');
+      $starting_year = date('Y', strtotime($value->start_date));
+
+      // $dateObj   = DateTime::createFromFormat('!m', $month);
+      // $monthName = $dateObj->format('F'); // March
+
+
+      if ($starting_month < $month ||  $starting_year  < $year) {
+        $begining_date = '1 September 2018';
+        // $begining_date = '1 ' . $monthName . " " . $year;
+      }
+      else {
+        $begining_date = date('d F Y', strtotime($value->start_date));
+      }
+
+      // Fetching Start Date and End Date for comparing and retrieving data.
+      $end_date = date('Y-m-d', strtotime($value->end_date));
+      $start_date = date('Y-m-d', strtotime($begining_date));
+
+      dpm($last_date_of_month);
+      dpm($start_date);
+
+      // Fetching Events Data for the month
+      for ($i = $start_date; $i <= $last_date_of_month; $i++) {
+        $print_date = date('d F Y', strtotime($i));
+        $event_start_date = date('d M Y', strtotime($value->start_date));
+        $event_end_date = date('d M Y', strtotime($value->end_date));
+        $event_start_time = date('h:i A', strtotime($value->start_date));
+        $event_end_time = date('h:i A', strtotime($value->end_time));
+        $event_date = $event_start_date . " - " . $event_end_date;
+        $event_time = $event_start_time . " - " . $event_end_time;
+        $output[$print_date][] = array('event_date' => $event_date, 'event_time' => $event_time , 'title' => $value->title, 'description' => $value->description, 'venue' => $value->venue);
+      }
+    }
+  }
+
+  else {
+    $output = 'No data found';
+  }
+
+  return $output;
+}
+
+/**
+ *  Displaying Events data in calendar
+ */
+function theme_display_events_final_calendar($variables) {
+  $events_final_data = $variables['events_calendar'];
+
+  if ($events_final_data != 'No data found') {
+    $output = '<div class="sports-events-calendar">';
+
+    foreach ($events_final_data as $key => $events) {
+      $output .= '<div class="calendar-date">' . $key;
+
+      if (!empty($events)) {
+        $output .= "<table><tr><th>Event Date</th><th>Event Title</th> <th>Event Description</th><th>Venue</th></tr>";
+
+        foreach ($events as $key => $value) {
+          $output .= "
+              <tr>
+                <td>" . $value['event_date'] . "<br><br>" . $value['event_time']  . "</td>
+                <td>" . $value['title'] . "</td>
+                <td>" . $value['description'] . "</td>
+                <td>" . $value['venue'] . "</td>
+              </tr>
+              </table>";
+        }
+      }
+    }
+
+    $output .= "</div></div>";
+  }
+  else {
+    $output = '<div class="sports-events-calendar">' . $events_final_data . '</div>';
+  }
+
+
+  return $output;
+}
+
+
+/**
+* Implements hook_theme().
+*/
+function events_calendar_theme() {
+  return array(
+    'display_events_final_calendar' => array(
+      'variables' => array(
+        'events_calendar' => NULL,
+      ),
+    ),
+  );
+}
