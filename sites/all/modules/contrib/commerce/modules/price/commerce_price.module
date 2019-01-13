@@ -1086,13 +1086,13 @@ function commerce_price_component_total($price, $name = NULL) {
 
   // Loop over each component.
   foreach ($price['data']['components'] as $key => $component) {
-    // If we're totalling all components or this one matches the requested type...
+    // If we're totalling all components or this one matches the requested type
     if (empty($name) || $name == $component['name']) {
-      $total['amount'] += commerce_currency_convert(
-        $component['price']['amount'],
-        $component['price']['currency_code'],
-        $total['currency_code']
-      );
+        $total['amount'] += commerce_currency_convert(
+          $component['price']['amount'],
+          $component['price']['currency_code'],
+          $total['currency_code']
+        );
     }
   }
 

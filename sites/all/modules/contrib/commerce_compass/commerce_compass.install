@@ -1,0 +1,124 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function commerce_compass_install() {
+  // Add blocks to pages
+  // Note: if display delta names are more than 32 chars
+  // they are md5 hashed so that they are max 32 chars.
+  $block_defaults = array(
+    array('module' => 'views', 'delta' => 'compass_recent_orders-block_1', 'weight' => -38, 'pages' => 'admin/commerce/compass'),
+    array('module' => 'views', 'delta' => 'compass_recent_orders-block_2', 'weight' => -37, 'pages' => 'admin/commerce/compass'),
+    array('module' => 'views', 'delta' => '32edf76b2133a9d83a75c02222198bd6', 'weight' => -41, 'pages' => 'admin/commerce/compass'),
+    array('module' => 'views', 'delta' => '758a81b6cb9c9336d7d8c899db276c26', 'weight' => -40, 'pages' => 'admin/commerce/compass'),
+    array('module' => 'views', 'delta' => 'c533bf8b7e5ffeeda86b55f7ecc510f8', 'weight' => -39, 'pages' => 'admin/commerce/compass'),
+    array('module' => 'views', 'delta' => '81b1c7463cb47cbe72d3a259aa365264', 'weight' => -42, 'pages' => 'admin/commerce/compass'),
+    array('module' => 'views', 'delta' => 'aggregation_orders-block_1', 'weight' => -32, 'pages' => 'admin/commerce/compass'),
+    array('module' => 'views', 'delta' => 'efb8641eead0b715914721374a8a2bd3', 'weight' => -31, 'pages' => 'admin/commerce/compass/customers'),
+    array('module' => 'views', 'delta' => '7448c212b40f44b25d26ec5e1c157e97', 'weight' => -36, 'pages' => 'admin/commerce/compass/customers'),
+    array('module' => 'views', 'delta' => '562ad962c26b313dc3cac9c1cb737482', 'weight' => -34, 'pages' => 'admin/commerce/compass/customers'),
+    array('module' => 'views', 'delta' => '9d04a4ba81512be97eac46942bed58cf', 'weight' => -35, 'pages' => 'admin/commerce/compass/customers'),
+    array('module' => 'views', 'delta' => 'cb5bed7fabd79d12f8b5ed562f73fbab', 'weight' => -33, 'pages' => 'admin/commerce/compass/customers'),
+    array('module' => 'views', 'delta' => '5e5404b7860ad0dc5820abec7d945474', 'weight' => -32, 'pages' => 'admin/commerce/compass/customers'),
+    array('module' => 'views', 'delta' => 'd48a30eabcbfdab8c7a548eaee4ebb37', 'weight' => -30, 'pages' => 'admin/commerce/compass/products'),
+    array('module' => 'views', 'delta' => 'af9fa439cda8a909a4c5125913c16144', 'weight' => -28, 'pages' => 'admin/commerce/compass/products'),
+    array('module' => 'views', 'delta' => '1dd5a9b664bc89ccc67d452291b00bac', 'weight' => -29, 'pages' => 'admin/commerce/compass/products'),
+    array('module' => 'views', 'delta' => 'fe9d486aa3e30a6b5c77652eed582e82', 'weight' => -27, 'pages' => 'admin/commerce/compass/products'),
+    array('module' => 'views', 'delta' => 'ea78ba2a01da40946f6b53c525d1d560', 'weight' => -26, 'pages' => 'admin/commerce/compass/products'),
+    array('module' => 'views', 'delta' => '78e3c7e9ce72784d617a4ee39465cc3b', 'weight' => -25, 'pages' => 'admin/commerce/compass/products'),
+  );
+  foreach ($block_defaults as $block) {
+    $bid = db_query("SELECT bid FROM {block} WHERE theme = 'seven' AND delta = :delta", array(':delta' => $block['delta']))->fetchField();
+    $record = array(
+      'module' => $block['module'],
+      'delta' => $block['delta'],
+      'theme' => variable_get('admin_theme', 'seven'),
+      'region' => 'content',
+      'pages' => $block['pages'],
+      'status' => 1,
+      'visibility' => 1,
+      'weight' => $block['weight'],
+    );
+    if ($bid) {
+      $primary_key = array('bid');
+      $record['bid'] = $bid;
+    } else {
+      $primary_key = NULL;
+    }
+    drupal_write_record('block', $record, $primary_key);
+  }
+
+  // Skinr seems to ignore the admin theme and just load skins form default theme
+  // @todo fix this
+  $skinr_themes = array(variable_get('admin_theme', 'seven'), variable_get('theme_default', 'bartik'));
+  // Set skinr default layout configuration per theme
+  foreach ($skinr_themes as $skinr_theme) {
+    $skinr_defaults = array(
+      array('delta' => 'views__32edf76b2133a9d83a75c02222198bd6', 'skin' => 'comp_grid_clear-1', 'options' => unserialize('a:1:{i:0;s:10:"clear-both";}')),
+      array('delta' => 'views__81b1c7463cb47cbe72d3a259aa365264', 'skin' => 'comp_grid_clear-1', 'options' => unserialize('a:1:{i:0;s:10:"clear-both";}')),
+      array('delta' => 'views__compass_recent_orders-block_2', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-2";}')),
+      array('delta' => 'views__compass_recent_orders-block_1', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-2";}')),
+      array('delta' => 'views__81b1c7463cb47cbe72d3a259aa365264', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-3-4";}')),
+      array('delta' => 'views__32edf76b2133a9d83a75c02222198bd6', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-4";}')),
+      array('delta' => 'views__d48a30eabcbfdab8c7a548eaee4ebb37', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-2-3";}')),
+      array('delta' => 'views__af9fa439cda8a909a4c5125913c16144', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-3";}')),
+      array('delta' => 'views__1dd5a9b664bc89ccc67d452291b00bac', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-3";}')),
+      array('delta' => 'views__758a81b6cb9c9336d7d8c899db276c26', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-8";}')),
+      array('delta' => 'views__c533bf8b7e5ffeeda86b55f7ecc510f8', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-8";}')),
+      array('delta' => 'views__efb8641eead0b715914721374a8a2bd3', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-100";}')),
+      array('delta' => 'views__562ad962c26b313dc3cac9c1cb737482', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-5";}')),
+      array('delta' => 'views__7448c212b40f44b25d26ec5e1c157e97', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-5";}')),
+      array('delta' => 'views__9d04a4ba81512be97eac46942bed58cf', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-5";}')),
+      array('delta' => 'views__cb5bed7fabd79d12f8b5ed562f73fbab', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-5";}')),
+      array('delta' => 'views__5e5404b7860ad0dc5820abec7d945474', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-5";}')),
+      array('delta' => 'views__compass_recent_orders-block_2', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-100";}')),
+      array('delta' => 'views__compass_recent_orders-block_1', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-100";}')),
+      array('delta' => 'views__32edf76b2133a9d83a75c02222198bd6', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-1-2";}')),
+      array('delta' => 'views__758a81b6cb9c9336d7d8c899db276c26', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-1-4";}')),
+      array('delta' => 'views__c533bf8b7e5ffeeda86b55f7ecc510f8', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-1-4";}')),
+      array('delta' => 'views__81b1c7463cb47cbe72d3a259aa365264', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-100";}')),
+      array('delta' => 'views__d48a30eabcbfdab8c7a548eaee4ebb37', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-100";}')),
+      array('delta' => 'views__1dd5a9b664bc89ccc67d452291b00bac', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-1-2";}')),
+      array('delta' => 'views__af9fa439cda8a909a4c5125913c16144', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-1-2";}')),
+      array('delta' => 'views__compass_recent_orders-block_2', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-100";}')),
+      array('delta' => 'views__compass_recent_orders-block_1', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-100";}')),
+      array('delta' => 'views__32edf76b2133a9d83a75c02222198bd6', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-100";}')),
+      array('delta' => 'views__758a81b6cb9c9336d7d8c899db276c26', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-1-2";}')),
+      array('delta' => 'views__c533bf8b7e5ffeeda86b55f7ecc510f8', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-1-2";}')),
+      array('delta' => 'views__d48a30eabcbfdab8c7a548eaee4ebb37', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-100";}')),
+      array('delta' => 'views__1dd5a9b664bc89ccc67d452291b00bac', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-100";}')),
+      array('delta' => 'views__af9fa439cda8a909a4c5125913c16144', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-100";}')),
+      array('delta' => 'views__fe9d486aa3e30a6b5c77652eed582e82', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-2-3";}')),
+      array('delta' => 'views__fe9d486aa3e30a6b5c77652eed582e82', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-100";}')),
+      array('delta' => 'views__fe9d486aa3e30a6b5c77652eed582e82', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-100";}')),
+      array('delta' => 'views__ea78ba2a01da40946f6b53c525d1d560', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-3";}')),
+      array('delta' => 'views__ea78ba2a01da40946f6b53c525d1d560', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-100";}')),
+      array('delta' => 'views__ea78ba2a01da40946f6b53c525d1d560', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-100";}')),
+      array('delta' => 'views__78e3c7e9ce72784d617a4ee39465cc3b', 'skin' => 'comp_grid_width1', 'options' => unserialize('a:1:{i:0;s:16:"media-1-grid-1-3";}')),
+      array('delta' => 'views__78e3c7e9ce72784d617a4ee39465cc3b', 'skin' => 'comp_grid_width2', 'options' => unserialize('a:1:{i:0;s:16:"media-2-grid-100";}')),
+      array('delta' => 'views__78e3c7e9ce72784d617a4ee39465cc3b', 'skin' => 'comp_grid_width3', 'options' => unserialize('a:1:{i:0;s:16:"media-3-grid-100";}')),
+    );
+    foreach ($skinr_defaults as $skin) {
+      $sid = db_query("SELECT sid FROM {skinr_skins} WHERE theme = :theme AND module = 'block' AND element = :delta AND skin = :skin", array(
+          ':delta' => $skin['delta'],
+          ':theme' => $skinr_theme,
+          ':skin' => $skin['skin']))->fetchField();
+      $record = array(
+        'theme' => $skinr_theme,
+        'module' => 'block',
+        'element' => $skin['delta'],
+        'skin' => $skin['skin'],
+        'options' => $skin['options'],
+        'status' => 1,
+      );
+      if ($sid) {
+        $primary_key = array('sid');
+        $record['sid'] = $sid;
+      } else {
+        $primary_key = NULL;
+      }
+      drupal_write_record('skinr_skins', $record, $primary_key);
+    }
+  }
+}

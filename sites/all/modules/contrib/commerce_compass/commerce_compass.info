@@ -1,0 +1,24 @@
+name = Commerce Compass Dashboard
+description = Commerce Compass Dashboard & Analytics
+core = 7.x
+package = Commerce (contrib)
+php = 5.2.4
+dependencies[] = commerce
+dependencies[] = date
+dependencies[] = date_views
+dependencies[] = features
+dependencies[] = skinr
+dependencies[] = views
+dependencies[] = views_dataviz
+dependencies[] = views_date_format_sql
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:1
+features[views_view][] = compass_aggregation_orders
+features[views_view][] = compass_recent_orders
+
+; Information added by drupal.org packaging script on 2012-06-04
+version = "7.x-1.0-alpha3"
+core = "7.x"
+project = "commerce_compass"
+datestamp = "1338845478"
+

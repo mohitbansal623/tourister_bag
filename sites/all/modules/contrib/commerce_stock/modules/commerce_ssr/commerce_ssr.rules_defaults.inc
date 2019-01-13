@@ -85,7 +85,7 @@ function commerce_ssr_default_rules_configuration() {
         { "rules_i18n_t" : {
             "USING" : {
               "text" : "The maximum quantity for [commerce-product:title] that can be ordered is [commerce-product:commerce-stock-int].",
-              "language" : [ "site:current-page:language" ]
+              "language Please fill Contact Us form to order more. The order will be delievered in 8-10 days." : [ "site:current-page:language" ]
             },
             "PROVIDE" : { "text" : { "stock_validate_add_to_cart_message" : "The translated text" } }
           }
@@ -136,7 +136,7 @@ function commerce_ssr_default_rules_configuration() {
         },
         { "commerce_stock_add_to_cart_set_state" : {
             "stock_action" : "1",
-            "message" : "The maximum quantity for [commerce-product:title] that can be ordered is [commerce-product:commerce-stock-int].\r\n",
+            "message" : "The maximum quantity for [commerce-product:title] that can be ordered is [commerce-product:commerce-stock-int].\r\n Please fill Contact Us form to order more. The order will be delievered in 8-10 days.",
             "approved_quantity" : [ "approved-quantity" ]
           }
         }
@@ -165,7 +165,7 @@ function commerce_ssr_default_rules_configuration() {
       "DO" : [
         { "rules_i18n_t" : {
             "USING" : {
-              "text" : "The maximum quantity for [commerce-product:title] that can be ordered is [commerce-product:commerce-stock-int].",
+              "text" : "The maximum quantity for [commerce-product:title] that can be ordered is [commerce-product:commerce-stock-int]. Please fill Contact Us form to order more. The order will be delievered in 8-10 days.",
               "language" : [ "site:current-page:language" ]
             },
             "PROVIDE" : { "text" : { "stock_validate_checkout_message" : "The translated text" } }
@@ -199,7 +199,7 @@ function commerce_ssr_default_rules_configuration() {
       "DO" : [
         { "commerce_stock_checkout_state" : {
             "stock_action" : "1",
-            "message" : "The maximum quantity for [commerce-product:title] that can be ordered is [commerce-product:commerce-stock-int].",
+            "message" : "The maximum quantity for [commerce-product:title] that can be ordered is [commerce-product:commerce-stock-int]. Please fill Contact Us form to order more. The order will be delievered in 8-10 days.",
             "approved_quantity" : [ "commerce-product:commerce-stock" ]
           }
         }

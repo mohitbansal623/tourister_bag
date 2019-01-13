@@ -1,0 +1,58 @@
+.region-content {
+  font-size:16px;
+  font-family:'DIN Light','DIN',helvetica,arial,verdana,sans-serif;
+}
+
+.region-content h1,
+.region-content h2,
+.region-content h3,
+.region-content h4,
+.region-content h5,
+.region-content h6,
+.region-content label {
+  font-weight:normal;
+}
+
+.region-content .block {
+  float:left;
+}
+
+.block h2,
+.block .content {
+  padding:20px;
+}
+
+.block-views .view-filters {
+  font-size:12px;
+  position:absolute;
+  top:1em;
+  left:50%;
+  z-index:5;
+  display:none;
+  opacity:0;
+}
+
+.block-views .view-filters form {
+  position:relative;
+  left:-50%;
+  background:#f0f0f0;
+  border-radius:10px;
+  -webkit-box-shadow: 0 0 5px 0px #999;
+  box-shadow: 0 0 5px 0px #999;
+  padding:5px 10px;
+  width:250px;
+}
+
+.block-views .view-filters .form-text {
+  width:100px;
+}
+
+.block-views:hover .view-filters,
+.block-views:focus .view-filters {
+  display:block;
+  opacity:0.95;
+}
+
+.bigtext-apply {
+  color:#000;
+}

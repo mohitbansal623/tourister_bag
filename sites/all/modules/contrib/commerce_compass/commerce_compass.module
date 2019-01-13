@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * Contains tweaks and features specifically for sooperthemes.com
+ */
+
+include('commerce_compass.features.inc');
+
+/**
+ * Implements hook_permission() 
+ */
+function commerce_compass_permission() {
+  return array(
+    'access commerce compass dashboard' =>  array(
+      'title' => t('Access Commerce Compass Dashboard'),
+    ),
+  );
+
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function commerce_compass_menu() {
+
+/**
+ * @todo access callbacks
+ */
+  $items['admin/commerce/compass'] = array(
+    'title' => 'Compass Dashboard',
+    'description' => ' A highly graphical dashboard for Drupal Commerce sites',
+    'page callback' => 'commerce_compass_empty_page',
+    'access arguments' => array('access protected menu example'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['admin/commerce/compass/overview'] = array(
+    'title' => 'Compass Dashboard',
+    'page callback' => 'commerce_compass_empty_page',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+
+  $items['admin/commerce/compass/products'] = array(
+    'title' => 'Products',
+    'page callback' => 'commerce_compass_empty_page',
+    'access arguments' => array('access protected menu example'),
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  $items['admin/commerce/compass/customers'] = array(
+    'title' => 'Customers',
+    'page callback' => 'commerce_compass_empty_page',
+    'access arguments' => array('access protected menu example'),
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  return $items;
+}
+
+
+function commerce_compass_empty_page() {
+  drupal_add_css(drupal_get_path('module', 'commerce_compass') . '/css/commerce_compass.base.css');
+  return '';
+}
+
+/**
+ * Implements hook_skinr_api_VERSION().
+ */
+function commerce_compass_skinr_api_2() {
+}
+
+/**
+ * Implements hook_skinr_group_info().
+ */
+function commerce_compass_skinr_group_info() {
+  $groups['compass'] = array(
+    'title' => t('Compass Dashboard'),
+    'description' => t('Responsive layout styles for Compass Dashboard.'),
+  );
+  return $groups;
+}
+
+/**
+ * Add grid styling to compass layout skins
+ */
+function commerce_compass_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'skinr_ui_form') {
+    drupal_add_css(drupal_get_path('module', 'commerce_compass') . '/css/arctica.skinr.admin.css');
+  }
+}

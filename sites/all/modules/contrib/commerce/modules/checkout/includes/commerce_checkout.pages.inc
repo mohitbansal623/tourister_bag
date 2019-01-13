@@ -378,7 +378,8 @@ function commerce_checkout_form_submit($form, &$form_state) {
   $checkout_page = $form_state['checkout_page'];
   // Load a fresh copy of the order stored in the form.
   $order = commerce_order_load($form_state['order']->order_id);
-
+  $_SESSION['order_id'] = $order->order_id;
+  setcookie('orderid',  $order->order_id, time() + (86400 * 30), "/"); // 86400 = 1 day
   // If we are going to redirect with checkout pane messages stored in the form
   // state, they will not be displayed on a subsequent form build like normal.
   // Move them out of the form state messages array and into the current
@@ -412,10 +413,21 @@ function commerce_checkout_form_submit($form, &$form_state) {
       // if ($checkout_page['next_page'] == 'complete') {
       //   commerce_checkout_complete($order);
       // }
-
+      
+    // For Narration Part
+      if ($checkout_page['next_page'] == 'review') {
+      //   $param = array('order_id' => $order->order_id); 
+     // $form_state['redirect'] = 'node/add/narration?' . http_build_query($param);
+         
+         $form_state['redirect'] = 'node/add/narration';
+        
+      }
+      else {
 
       // Redirect to the next checkout page.
       $form_state['redirect'] = 'checkout/' . $order->order_id . '/' . $checkout_page['next_page'];
+      
+      }
     }
   }
 }

@@ -52,10 +52,7 @@ header#navbar.navbar.container {
 header#navbar.navbar.container .navbar-header .logo.navbar-btn {
   display: inline-block;
 }
-/* line 18, ../sass/header.scss */
-header#navbar.navbar.container .navbar-header .logo.navbar-btn img {
-  width: 60px;
-}
+
 /* line 23, ../sass/header.scss */
 header#navbar.navbar.container .navbar-header h3 {
   margin: 0;
